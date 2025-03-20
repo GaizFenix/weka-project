@@ -16,9 +16,9 @@
             "name": "arff2bow",
             "request": "launch",
             "mainClass": "arff2bow",
-            "projectName": "weka-project_7fdd4c18",
+            //"projectName": "weka-project_7fdd4c18",
             "vmArgs": "--add-opens java.base/java.lang=ALL-UNNAMED",
-            "args": "${cwd}/data/raw/data_train_cleaned.csv ${cwd}/data/arff/data_train.arff"
+            "args": "${cwd}/data/raw/cleaned_PHMRC_VAI_redacted_free_text.train.csv ${cwd}/data/raw/data_train_cleanedPROBA.csv ${cwd}/data/arff/data_trainPROBA.arff"
         },
         {
             "type": "java",
