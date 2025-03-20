@@ -47,9 +47,12 @@ public class arff2bow {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] values = line.split(","); // Split by comma
+                //String[] values = line.split(","); // Split by comma
+                String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 for (int i = 0; i < values.length; i++) {
-                    values[i] = "\"" + values[i].trim() + "\""; // Wrap each value in quotes
+                    values[i] = values[i].trim(); 
+                    values[i] = "\"" + values[i].replace("\"", "\"\"") + "\"";
+                    //values[i] = "\"" + values[i].trim() + "\""; // Wrap each value in quotes
                 }
                 writer.write(String.join(",", values)); // Join values with commas
                 writer.newLine();
