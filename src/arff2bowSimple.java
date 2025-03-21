@@ -10,6 +10,9 @@ import java.util.Map;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.StringToWordVector;
+import weka.filters.unsupervised.instance.SparseToNonSparse;
 
 public class arff2bowSimple {
     public static void main(String[] args) {
@@ -19,7 +22,7 @@ public class arff2bowSimple {
             System.exit(1);
         }
 
-        String outCsvTempPath = "temp.csv";
+        String outCsvTempPath = "data/aux/temp.csv";
         String inCsvRawFilePath = args[0];
         String outArffCleanFilePath = args[1];
 
@@ -41,10 +44,25 @@ public class arff2bowSimple {
             // Load into Instances object
             Instances data = loader.getDataSet();
 
+            // Filter applying (StringToWordVector and SparseToNonSparse)
+            StringToWordVector filter = new StringToWordVector();
+            filter.setAttributeIndices("first");
+            filter.setDictionaryFileToSaveTo(new File("data/aux/dictionary.txt"));
+            filter.setLowerCaseTokens(true);
+            filter.setOutputWordCounts(true);
+            filter.setInputFormat(data);
+
+            Instances newData = Filter.useFilter(data, filter);
+
+            SparseToNonSparse filter2 = new SparseToNonSparse();
+            filter2.setInputFormat(newData);
+
+            newData = Filter.useFilter(newData, filter2);
+
             // Save as ARFF
             ArffSaver as = new ArffSaver();
             as.setFile(new File(outArffCleanFilePath));
-            as.setInstances(data);
+            as.setInstances(newData);
             as.writeBatch();
 
             System.out.println("ARFF saved to: " + outArffCleanFilePath);
