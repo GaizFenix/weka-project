@@ -13,14 +13,15 @@ import weka.core.converters.CSVLoader;
 
 public class arff2bowSimple {
     public static void main(String[] args) {
+
+        if (args.length != 2) {
+            System.err.println("ERROR! Correct usage: java arff2bowSimple <input_raw.csv> <output_clean.arff>");
+            System.exit(1);
+        }
+
         String outCsvTempPath = "temp.csv";
         String inCsvRawFilePath = args[0];
         String outArffCleanFilePath = args[1];
-
-        if (args.length != 2) {
-            System.err.println("Usage: java arff2bowSimple <input_raw.csv> <output_clean.arff>");
-            System.exit(1);
-        }
 
         try {
             preprocessCSV(inCsvRawFilePath, outCsvTempPath);
@@ -45,6 +46,8 @@ public class arff2bowSimple {
             as.setFile(new File(outArffCleanFilePath));
             as.setInstances(data);
             as.writeBatch();
+
+            System.out.println("ARFF saved to: " + outArffCleanFilePath);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,8 +126,8 @@ public class arff2bowSimple {
         map.put("esophageal cancer", "Neoplasms");
         map.put("other cancers", "Neoplasms");
     
-        map.put("diabetes", "Endocrine, Nutritional and Metabolic Diseases");
-        map.put("other non-communicable diseases", "Endocrine, Nutritional and Metabolic Diseases");
+        map.put("diabetes", "Endocrine or Nutritional and Metabolic Diseases");
+        map.put("other non-communicable diseases", "Endocrine or Nutritional and Metabolic Diseases");
     
         map.put("epilepsy", "Diseases of the Nervous System");
     
@@ -141,17 +144,17 @@ public class arff2bowSimple {
     
         map.put("renal failure", "Diseases of the Genitourinary System");
     
-        map.put("preterm delivery", "Pregnancy, childbirth and the puerperium");
-        map.put("stillbirth", "Pregnancy, childbirth and the puerperium");
-        map.put("maternal", "Pregnancy, childbirth and the puerperium");
-        map.put("birth asphyxia", "Pregnancy, childbirth and the puerperium");
-        map.put("other defined causes of child deaths", "Pregnancy, childbirth and the puerperium");
+        map.put("preterm delivery", "Pregnancy or childbirth and the puerperium");
+        map.put("stillbirth", "Pregnancy or childbirth and the puerperium");
+        map.put("maternal", "Pregnancy or childbirth and the puerperium");
+        map.put("birth asphyxia", "Pregnancy or childbirth and the puerperium");
+        map.put("other defined causes of child deaths", "Pregnancy or childbirth and the puerperium");
     
         map.put("congenital malformations", "Congenital Malformations");
         map.put("congenital malformation", "Congenital Malformations");
     
-        map.put("bite of venomous animal", "Injury, Poisoning and External Causes");
-        map.put("poisonings", "Injury, Poisoning and External Causes");
+        map.put("bite of venomous animal", "Injury or Poisoning and External Causes");
+        map.put("poisonings", "Injury or Poisoning and External Causes");
     
         map.put("road traffic", "External Causes of Morbidity and Mortality");
         map.put("falls", "External Causes of Morbidity and Mortality");
