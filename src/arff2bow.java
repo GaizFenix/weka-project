@@ -12,7 +12,7 @@ public class arff2bow {
             System.out.println("Post-: - Output ARFF artxiboa inputeko CSV-aren datu berdinak ditu Wekarako formatu egokiarekin.");
             return;
         }
-
+        //proba
         try {
             // Step 1: Clean the dirty CSV
             cleanCSV(args[0], args[1]);
