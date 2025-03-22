@@ -3,7 +3,7 @@
 3. En el csv simple trabajar solo con un atributo (el texto) y limpiar de comillas la clase ✅
 4. En la carga de datos definir lo headers de manera manual y agrupar la clase ✅
 5. En metricas de calidad las importantes son respecto a clase
-6. 
+6. Hacer el baseline ⚙️(revisar)
 7.
 8.
 9.
