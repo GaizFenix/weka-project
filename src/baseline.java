@@ -2,6 +2,8 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.trees.J48;
 import weka.classifiers.Evaluation;
+import weka.filters.Filter;
+import weka.filters.supervised.instance.Resample;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import weka.core.Utils;
@@ -32,53 +34,71 @@ public class baseline {
             double[] fprs = new double[25]; // False Positive Rate
             double[] tnrs = new double[25]; // True Negative Rate
             double[] fnrs = new double[25]; // False Negative Rate
+            double[] rocs = new double[25]; // ROC Area
+            double[] prcs = new double[25]; // PRC Area
+            double[] kappas = new double[25]; // Kappa Statistic
             double[][] confusionMatrix = null;
-            double meanROC = 0;
-            double meanPRC = 0;
-            double meanKappa = 0;
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
 
                 for (int seed = 1; seed <= 25; seed++) {
+                    // Configurar el filtro Resample para el stratified
+                    Resample resample = new Resample();
+                    resample.setRandomSeed(seed);
+                    resample.setSampleSizePercent(70); // 70% para entrenamiento
+                    resample.setNoReplacement(true); // Sin reemplazo
+                    resample.setBiasToUniformClass(1.0); // Mantener la distribucion de las clases
+                    resample.setInvertSelection(false); // Seleccionar el conjunto de entrenamiento
+                    resample.setInputFormat(data);
+
+                    // Crear el conjunto de entrenamiento(70%)
+                    Instances train = Filter.useFilter(data, resample);
+
+                    // Crear el conjunto de prueba (30%)
+                    resample.setInvertSelection(true); // Seleccionar el conjunto de prueba
+                    Instances test = Filter.useFilter(data, resample);
+
+                    // Entrenar el clasificador
                     J48 classifier = new J48();
-                    classifier.setSeed(seed);
-                    classifier.buildClassifier(data);
-        
-                    Evaluation eval = new Evaluation(data);
-                    eval.crossValidateModel(classifier, data, 10, new java.util.Random(seed));
+                    classifier.buildClassifier(train);
+
+                    // Evaluar el modelo
+                    Evaluation eval = new Evaluation(train);
+                    eval.evaluateModel(classifier, test);
+
                     accuracies[seed - 1] = eval.pctCorrect();
                     precisions[seed - 1] = eval.weightedPrecision();
                     recalls[seed - 1] = eval.weightedRecall();
                     f1Scores[seed - 1] = eval.weightedFMeasure();
-
-                    meanROC += eval.weightedAreaUnderROC();
-                    meanPRC += eval.weightedAreaUnderPRC();
-                    meanKappa += eval.kappa();
+                    rocs[seed - 1] = eval.weightedAreaUnderROC();
+                    prcs[seed - 1] = eval.weightedAreaUnderPRC();
+                    kappas[seed - 1] = eval.kappa();
 
                     // Métricas adicionales por semilla
                     tprs[seed - 1] = eval.truePositiveRate(0); // TPR para la clase 0
                     fprs[seed - 1] = eval.falsePositiveRate(0); // FPR para la clase 0
                     tnrs[seed - 1] = 1 - eval.falsePositiveRate(0); // TNR = 1 - FPR
                     fnrs[seed - 1] = 1 - eval.truePositiveRate(0); // FNR = 1 - TPR
-                    
+
                     if (seed == 25) {
                         confusionMatrix = eval.confusionMatrix();
                     }
                 }
-    
+
+                // Calcular métricas generales
                 double meanAccuracy = calculateMean(accuracies);
                 double stdDevAccuracy = calculateStdDev(accuracies, meanAccuracy);
                 double meanPrecision = calculateMean(precisions);
                 double meanRecall = calculateMean(recalls);
                 double meanF1Score = calculateMean(f1Scores);
-                meanROC /= 25;
-                meanPRC /= 25;
-                meanKappa /= 25;
+                double meanROC = calculateMean(rocs);
+                double meanPRC = calculateMean(prcs);
+                double meanKappa = calculateMean(kappas);
                 double meanTPR = calculateMean(tprs);
                 double meanFPR = calculateMean(fprs);
                 double meanTNR = calculateMean(tnrs);
                 double meanFNR = calculateMean(fnrs);
-    
+
                 // Sección de métricas generales
                 writer.println("===== General Metrics =====");
                 writer.println("Mean Accuracy: " + meanAccuracy);
@@ -142,15 +162,13 @@ public class baseline {
                 for (int i = 0; i < fnrs.length; i++) {
                     writer.println("Seed " + (i + 1) + ": " + fnrs[i]);
                 }
-                
-
             }
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    //Calcula la media
+    //Media
     private static double calculateMean(double[] values) {
         double sum = 0;
         for (double value : values) {
@@ -158,7 +176,7 @@ public class baseline {
         }
         return sum / values.length;
     }
-    //Calcula la desviacion estandar
+    //Desviación estándar
     private static double calculateStdDev(double[] values, double mean) {
         double variance = 0;
         for (double value : values) {
