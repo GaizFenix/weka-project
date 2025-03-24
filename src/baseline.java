@@ -18,6 +18,8 @@ public class baseline {
 
             String inputArff = args[0]; 
             String outputFile = args[1]; 
+
+            int numSeeds = 25;
     
             DataSource source = new DataSource(inputArff);
             Instances data = source.getDataSet();
@@ -25,22 +27,22 @@ public class baseline {
                 data.setClassIndex(data.numAttributes() - 1);
             }
     
-            double[] accuracies = new double[25];
-            double[] precisions = new double[25];
-            double[] recalls = new double[25];
-            double[] f1Scores = new double[25];
-            double[] tprs = new double[25]; // True Positive Rate
-            double[] fprs = new double[25]; // False Positive Rate
-            double[] tnrs = new double[25]; // True Negative Rate
-            double[] fnrs = new double[25]; // False Negative Rate
-            double[] rocs = new double[25]; // ROC Area
-            double[] prcs = new double[25]; // PRC Area
-            double[] kappas = new double[25]; // Kappa Statistic
+            double[] accuracies = new double[numSeeds];
+            double[] precisions = new double[numSeeds];
+            double[] recalls = new double[numSeeds];
+            double[] f1Scores = new double[numSeeds];
+            double[] tprs = new double[numSeeds]; // True Positive Rate
+            double[] fprs = new double[numSeeds]; // False Positive Rate
+            double[] tnrs = new double[numSeeds]; // True Negative Rate
+            double[] fnrs = new double[numSeeds]; // False Negative Rate
+            double[] rocs = new double[numSeeds]; // ROC Area
+            double[] prcs = new double[numSeeds]; // PRC Area
+            double[] kappas = new double[numSeeds]; // Kappa Statistic
             double[][] confusionMatrix = null;
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
 
-                for (int seed = 1; seed <= 25; seed++) {
+                for (int seed = 1; seed <= numSeeds; seed++) {
                     // Configurar el filtro Resample para el stratified
                     Resample resample = new Resample();
                     resample.setRandomSeed(seed);
@@ -79,7 +81,7 @@ public class baseline {
                     tnrs[seed - 1] = 1 - eval.falsePositiveRate(0); // TNR = 1 - FPR
                     fnrs[seed - 1] = 1 - eval.truePositiveRate(0); // FNR = 1 - TPR
 
-                    if (seed == 25) {
+                    if (seed == numSeeds) {
                         confusionMatrix = eval.confusionMatrix();
                     }
                 }
