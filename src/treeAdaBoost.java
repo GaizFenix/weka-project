@@ -84,6 +84,7 @@ public class treeAdaBoost {
                         bestC = c;
                         bestM = m;
                     }
+                    iter++;
                 }
             }
 
