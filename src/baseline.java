@@ -127,17 +127,17 @@ public class baseline {
                     writer.println("Seed " + (i + 1) + ": " + accuracies[i]);
                 }
 
-                writer.println("Precisions for each seed:");
+                writer.println("\nPrecisions for each seed:");
                 for (int i = 0; i < precisions.length; i++) {
                     writer.println("Seed " + (i + 1) + ": " + precisions[i]);
                 }
 
-                writer.println("Recalls for each seed:");
+                writer.println("\nRecalls for each seed:");
                 for (int i = 0; i < recalls.length; i++) {
                     writer.println("Seed " + (i + 1) + ": " + recalls[i]);
                 }
 
-                writer.println("F1-Scores for each seed:");
+                writer.println("\nF1-Scores for each seed:");
                 for (int i = 0; i < f1Scores.length; i++) {
                     writer.println("Seed " + (i + 1) + ": " + f1Scores[i]);
                 }
