@@ -11,7 +11,6 @@ import weka.core.Utils;
 public class baseline {
     public static void main(String[] args) {
         try {
-
             if (args.length != 2) {
                 System.err.println("ERROR! Correct usage: java baseline <input_clean.arff> <output_file.txt>");
                 System.exit(1);
@@ -63,7 +62,7 @@ public class baseline {
                     classifier.buildClassifier(train);
 
                     // Evaluar el modelo
-                    Evaluation eval = new Evaluation(train);
+                    Evaluation eval = new Evaluation(test);
                     eval.evaluateModel(classifier, test);
 
                     accuracies[seed - 1] = eval.pctCorrect();
