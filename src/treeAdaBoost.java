@@ -62,6 +62,8 @@ public class treeAdaBoost {
 
             for (double c : confidenceFactors) {
                 for (int m : minNumInstances) {
+                    System.out.println("Training attr count: " + train.numAttributes());
+                    System.out.println("Dev attr count: " + newDev.numAttributes());
                     System.out.println("Iteration " + iter + " -> Confidence factor: " + c + " and min num instances: " + m);
                     // Setup J48 classifier
                     J48 tree = new J48();
