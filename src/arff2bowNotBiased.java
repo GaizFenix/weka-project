@@ -58,9 +58,10 @@ public class arff2bowNotBiased {
             // Resample to create train and dev sets
             Resample r = new Resample();
             r.setRandomSeed(18);
-            r.setSampleSizePercent(85); // 70% for training
-            r.setNoReplacement(true); // Without replacement
+            r.setSampleSizePercent(75); // 75% for training
+            r.setNoReplacement(false); // With replacement
             r.setInvertSelection(false); // Select training set
+            r.setBiasToUniformClass(0.3);
             r.setInputFormat(data);
 
             // Create training set (70%)
@@ -68,8 +69,13 @@ public class arff2bowNotBiased {
 
             // Create dev set (30%)
             r.setInvertSelection(true); // Select dev set
+            r.setNoReplacement(true); // Without replacement
+            r.setBiasToUniformClass(0.0);
             r.setInputFormat(data);
             Instances dev = Filter.useFilter(data, r);
+
+            System.out.println("Train set size: " + train.size());
+            System.out.println("Dev set size: " + dev.size());
 
             // Filter applying (StringToWordVector and SparseToNonSparse)
             StringToWordVector filter = new StringToWordVector();
