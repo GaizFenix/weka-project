@@ -13,6 +13,7 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.FixedDictionaryStringToWordVector;
+import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 
 public class treeAdaBoostParallel {
@@ -98,12 +99,19 @@ public class treeAdaBoostParallel {
                             classifier.setUseResampling(false);
                             classifier.setNumIterations(numIter);
                             classifier.setWeightThreshold(weight);
+                            long startTime = System.currentTimeMillis();
                             classifier.buildClassifier(train);
 
                             // Evaluate classifier on the development set
                             Evaluation eval = new Evaluation(train);
                             eval.evaluateModel(classifier, newDev);
                             double accuracy = eval.pctCorrect();
+
+                            long finalTime = System.currentTimeMillis() - startTime;
+
+                            System.out.println("\nCase: Iterations = " + numIter + ", Weight Threshold = " + weight);
+                            System.out.println("Time: " + finalTime + " ms");
+                            System.out.println("Accuracy: " + accuracy);
 
                             return new HyperParamResult(numIter, weight, accuracy);
                         } catch (Exception e) {

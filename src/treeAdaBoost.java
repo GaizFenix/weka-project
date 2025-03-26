@@ -80,12 +80,16 @@ public class treeAdaBoost {
                     classifier.setUseResampling(false);
                     classifier.setNumIterations(i);
                     classifier.setWeightThreshold(w);
+                    long startTime = System.currentTimeMillis();
                     classifier.buildClassifier(train);
                     
 
                     // Train and test the model
                     Evaluation eval = new Evaluation(train);
                     eval.evaluateModel(classifier, newDev);
+                    long finalTime = System.currentTimeMillis() - startTime;
+                    System.out.println("Time: " + finalTime + "ms");
+                    System.out.println("Case " + aux + " - Accuracy: " + eval.pctCorrect() + " - Iterations: " + i + " - Weight: " + w);
 
                     // Metrics and hyperparameter comparison
                     if (eval.pctCorrect() > bestAccuracy) {
