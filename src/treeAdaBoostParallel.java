@@ -13,7 +13,6 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.FixedDictionaryStringToWordVector;
-import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 
 public class treeAdaBoostParallel {
