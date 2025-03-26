@@ -74,7 +74,7 @@ public class arff2bowNotBiased {
             r.setInputFormat(data);
             Instances dev = Filter.useFilter(data, r);
 
-            System.out.println("Train set size: " + train.size());
+            System.out.println("\nTrain set size: " + train.size());
             System.out.println("Dev set size: " + dev.size());
 
             // Filter applying (StringToWordVector and SparseToNonSparse)
@@ -139,7 +139,7 @@ public class arff2bowNotBiased {
             dictReader.close();
             dictWriter.close();
 
-            System.out.println("Filtered dictionary saved to: " + newDictFile.getAbsolutePath());
+            System.out.println("\nFiltered dictionary saved to: " + newDictFile.getAbsolutePath());
 
             // Filter the train set again using the new dictionary
             int classIndex = newTrain.classIndex();
@@ -197,7 +197,7 @@ public class arff2bowNotBiased {
             as.setInstances(dev);
             as.writeBatch();
 
-            System.out.println("\nDev (raw) ARFF saved to: " + outDevArffPath);
+            System.out.println("Dev (raw) ARFF saved to: " + outDevArffPath);
 
         } catch (Exception e) {
             e.printStackTrace();
