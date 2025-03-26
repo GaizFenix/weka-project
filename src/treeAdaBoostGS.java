@@ -1,5 +1,6 @@
 import java.io.File;
 
+import weka.classifiers.Classifier;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.meta.AdaBoostM1;
 import weka.classifiers.trees.J48;
@@ -10,7 +11,6 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.FixedDictionaryStringToWordVector;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 import weka.classifiers.meta.GridSearch;
-import weka.classifiers.meta.GridSearch.PointDouble;
 
 public class treeAdaBoostGS {
     public static void main(String[] args) {
@@ -37,8 +37,8 @@ public class treeAdaBoostGS {
             // Adequate dev to train data
             FixedDictionaryStringToWordVector filter = new FixedDictionaryStringToWordVector();
             filter.setDictionaryFile(new File(inDictionaryPath));
-            filter.setIDFTransform(true);
-            filter.setTFTransform(true);
+            // filter.setIDFTransform(true);
+            // filter.setTFTransform(true);
             filter.setLowerCaseTokens(true);
             filter.setOutputWordCounts(true);
             filter.setInputFormat(dev);
@@ -58,26 +58,25 @@ public class treeAdaBoostGS {
             // AdaBoost with J48 as base mdl
             AdaBoostM1 ada = new AdaBoostM1();
             ada.setClassifier(j48);
-            ada.setNumIterations(10);
 
             // GridSearch
             GridSearch gs = new GridSearch();
-            gs.setClassifier(j48);
+            gs.setClassifier(ada);
             gs.setEvaluation(new SelectedTag(GridSearch.EVALUATION_ACC, GridSearch.TAGS_EVALUATION));
 
             // Set X property
-            gs.setXProperty("classifier.confidenceFactor");
-            gs.setXMin(0.05);
-            gs.setXMax(0.25);
-            gs.setXStep(0.05);
-            gs.setXExpression("C");
+            gs.setXProperty("weightThreshold");
+            gs.setXMin(90);
+            gs.setXMax(100);
+            gs.setXStep(5);
+            gs.setXExpression("I");
 
             // Set Y property
-            gs.setYProperty("classifier.minNumObj");
-            gs.setYMin(2);
-            gs.setYMax(10);
+            gs.setYProperty("numIterations");
+            gs.setYMin(1);
+            gs.setYMax(5);
             gs.setYStep(2);
-            gs.setYExpression("M");
+            gs.setYExpression("I");
 
             // Paralelize execution
             gs.setNumExecutionSlots(Runtime.getRuntime().availableProcessors());
@@ -93,10 +92,14 @@ public class treeAdaBoostGS {
             System.out.println("=== Best parameters found ===");
             // Returned values correspond to the optimized hyperparameters:
             // [0] -> J48 confidenceFactor, [1] -> J48 minNumObj
-            PointDouble bestParams = gs.getValues();
-            System.out.println("confidenceFactor: " + bestParams.getX());
-            System.out.println("minNumObj: " + bestParams.getY());
+            Classifier bestCls = gs.getBestClassifier();
 
+            if (bestCls instanceof AdaBoostM1) {
+                AdaBoostM1 bestAda = (AdaBoostM1) bestCls;
+                System.out.println("weightThreshold: " + bestAda.getWeightThreshold());
+                System.out.println("numIterations: " + bestAda.getNumIterations());
+            }
+        
             System.out.println("\n=== Dev set evaluation ===");
             System.out.println(eval.toSummaryString());
             System.out.println(eval.toClassDetailsString());
