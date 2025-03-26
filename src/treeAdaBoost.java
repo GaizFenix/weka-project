@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.stream.IntStream;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.meta.AdaBoostM1;
@@ -51,30 +52,36 @@ public class treeAdaBoost {
 
             newDev = Filter.useFilter(newDev, filter2);
 
-            // Optimize hyperapameters (AdaBoost + J48)
-            double[] confidenceFactors = {0.05, 0.1, 0.15, 0.25};
-            int[] minNumInstances = {2, 5, 10};
+            // Optimize hyperapameters (J48)
+            // double[] confidenceFactors = {0.05, 0.1, 0.15, 0.25};
+            // int[] minNumInstances = {2, 5, 10};
 
             double bestAccuracy = 0.0;
-            double bestC = 0.0;
-            int bestM = 0;
-            int iter = 1;
+            int bestI = 0;
+            int bestW = 0;
 
-            for (double c : confidenceFactors) {
-                for (int m : minNumInstances) {
-                    System.out.println("Training attr count: " + train.numAttributes());
-                    System.out.println("Dev attr count: " + newDev.numAttributes());
-                    System.out.println("Iteration " + iter + " -> Confidence factor: " + c + " and min num instances: " + m);
+            int[] iter = IntStream.rangeClosed(1, 5).toArray(); // Creates an array {1, 2, 3, 4, 5}
+            int[] weights = {80, 85, 90, 95, 100};
+
+            int aux = 1;
+
+            for (int i : iter) {
+                for (int w : weights) {
+                    System.out.printf("Iteration: %d --> Iter count = %d | Weight = %d", aux, i, w);
+
                     // Setup J48 classifier
                     J48 tree = new J48();
-                    tree.setConfidenceFactor((float) c);
-                    tree.setMinNumObj(m);
+                    // tree.setConfidenceFactor((float) c);
+                    // tree.setMinNumObj(m);
 
                     // Setup AdaBoost
                     AdaBoostM1 classifier = new AdaBoostM1();
                     classifier.setClassifier(tree);
                     classifier.setUseResampling(false);
+                    classifier.setNumIterations(i);
+                    classifier.setWeightThreshold(w);
                     classifier.buildClassifier(train);
+                    
 
                     // Train and test the model
                     Evaluation eval = new Evaluation(train);
@@ -83,21 +90,23 @@ public class treeAdaBoost {
                     // Metrics and hyperparameter comparison
                     if (eval.pctCorrect() > bestAccuracy) {
                         bestAccuracy = eval.pctCorrect();
-                        bestC = c;
-                        bestM = m;
+                        bestI = i;
+                        bestW = w;
                     }
-                    iter++;
+                    aux++;
                 }
             }
 
             // Train final model and get stats
             J48 tree = new J48();
-            tree.setConfidenceFactor((float) bestC);
-            tree.setMinNumObj(bestM);
+            // tree.setConfidenceFactor((float) bestC);
+            // tree.setMinNumObj(bestM);
 
             AdaBoostM1 classifier = new AdaBoostM1();
             classifier.setClassifier(tree);
             classifier.setUseResampling(false);
+            classifier.setWeightThreshold(bestW);
+            classifier.setNumIterations(bestI);
             classifier.buildClassifier(train);
 
             Evaluation eval = new Evaluation(train);
@@ -105,8 +114,8 @@ public class treeAdaBoost {
 
             // Save stats
             String stats = "===== AdaBoost + J48 with best hyperparameters =====\n";
-            stats += "Confidence Factor: " + bestC + "\n";
-            stats += "Min Num Instances: " + bestM + "\n";
+            stats += "Iteration count: " + bestI + "\n";
+            stats += "WEight threshold: " + bestW + "\n";
             stats += eval.toSummaryString() + "\n";
             stats += eval.toClassDetailsString() + "\n";
             stats += eval.toMatrixString() + "\n";

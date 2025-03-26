@@ -10,6 +10,7 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.FixedDictionaryStringToWordVector;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 import weka.classifiers.meta.GridSearch;
+import weka.classifiers.meta.GridSearch.PointDouble;
 
 public class treeAdaBoostGS {
     public static void main(String[] args) {
@@ -62,7 +63,7 @@ public class treeAdaBoostGS {
             // GridSearch
             GridSearch gs = new GridSearch();
             gs.setClassifier(j48);
-            gs.setEvaluation(new SelectedTag(GridSearch.EVALUATION_HOLDOUT, GridSearch.TAGS_EVALUATION));
+            gs.setEvaluation(new SelectedTag(GridSearch.EVALUATION_ACC, GridSearch.TAGS_EVALUATION));
 
             // Set X property
             gs.setXProperty("classifier.confidenceFactor");
@@ -92,9 +93,9 @@ public class treeAdaBoostGS {
             System.out.println("=== Best parameters found ===");
             // Returned values correspond to the optimized hyperparameters:
             // [0] -> J48 confidenceFactor, [1] -> J48 minNumObj
-            double[] bestParams = gs.getValues();
-            System.out.println("confidenceFactor: " + bestParams[0]);
-            System.out.println("minNumObj: " + bestParams[1]);
+            PointDouble bestParams = gs.getValues();
+            System.out.println("confidenceFactor: " + bestParams.getX());
+            System.out.println("minNumObj: " + bestParams.getY());
 
             System.out.println("\n=== Dev set evaluation ===");
             System.out.println(eval.toSummaryString());
