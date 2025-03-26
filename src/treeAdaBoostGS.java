@@ -57,6 +57,8 @@ public class treeAdaBoostGS {
 
             // AdaBoost with J48 as base mdl
             AdaBoostM1 ada = new AdaBoostM1();
+            // ada.setWeightThreshold(80);
+            // ada.setNumIterations(15);
             ada.setClassifier(j48);
 
             // GridSearch
@@ -64,18 +66,33 @@ public class treeAdaBoostGS {
             gs.setClassifier(ada);
             gs.setEvaluation(new SelectedTag(GridSearch.EVALUATION_ACC, GridSearch.TAGS_EVALUATION));
 
+            // GridSearch for J48
+            /*
+            gs.setXProperty("confidenceFactor");
+            gs.setXMin(0.1);
+            gs.setXMax(0.5);
+            gs.setXStep(0.1);
+            gs.setXExpression("I");
+
+            gs.setYProperty("minNumObj");
+            gs.setYMin(2);
+            gs.setYMax(10);
+            gs.setYStep(2);
+            gs.setYExpression("I");
+            */
+
             // Set X property
             gs.setXProperty("weightThreshold");
-            gs.setXMin(90);
+            gs.setXMin(50);
             gs.setXMax(100);
-            gs.setXStep(5);
+            gs.setXStep(10);
             gs.setXExpression("I");
 
             // Set Y property
             gs.setYProperty("numIterations");
-            gs.setYMin(1);
-            gs.setYMax(5);
-            gs.setYStep(2);
+            gs.setYMin(10);
+            gs.setYMax(15);
+            gs.setYStep(5);
             gs.setYExpression("I");
 
             // Paralelize execution
@@ -91,6 +108,7 @@ public class treeAdaBoostGS {
             // --- Result printing ---
             System.out.println("=== Best parameters found ===");
             // Returned values correspond to the optimized hyperparameters:
+            // [0] -> AdaBoost weightThreshold, [1] -> AdaBoost numIterations
             // [0] -> J48 confidenceFactor, [1] -> J48 minNumObj
             Classifier bestCls = gs.getBestClassifier();
 
@@ -98,6 +116,10 @@ public class treeAdaBoostGS {
                 AdaBoostM1 bestAda = (AdaBoostM1) bestCls;
                 System.out.println("weightThreshold: " + bestAda.getWeightThreshold());
                 System.out.println("numIterations: " + bestAda.getNumIterations());
+            } else if (bestCls instanceof J48) {
+                J48 bestJ48 = (J48) bestCls;
+                System.out.println("confidenceFactor: " + bestJ48.getConfidenceFactor());
+                System.out.println("minNumObj: " + bestJ48.getMinNumObj());
             }
         
             System.out.println("\n=== Dev set evaluation ===");
