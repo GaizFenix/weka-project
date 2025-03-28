@@ -1,0 +1,1 @@
+i5-8300 => Elapsed time (seconds): 177.55
