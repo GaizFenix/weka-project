@@ -14,10 +14,14 @@ import weka.classifiers.meta.GridSearch;
 
 public class treeAdaBoostGS {
     public static void main(String[] args) {
-        if (args.length != 4) {
-            System.err.println("ERROR! Correct usage: java treeAdaBoost <input_train.arff> <input_dev.arff> <input_dictionary.txt> <output_stats.txt>");
+        if (args.length != 3) {
+            System.err.println("ERROR! Correct usage: java treeAdaBoost <input_train.arff> <input_dev.arff> <input_dictionary.txt>");
             System.exit(1);
         }
+
+        // Record start time
+        long startTime = System.currentTimeMillis();
+        System.out.println("Program started at: " + new java.util.Date(startTime));
 
         String inTrainPath = args[0];
         String inDevPath = args[1];
@@ -126,6 +130,14 @@ public class treeAdaBoostGS {
             System.out.println(eval.toSummaryString());
             System.out.println(eval.toClassDetailsString());
             System.out.println(eval.toMatrixString());
+
+            // Record end time
+            long endTime = System.currentTimeMillis();
+            System.out.println("Program finished at: " + new java.util.Date(endTime));
+            
+            // Calculate and print elapsed time
+            long elapsedTime = endTime - startTime;
+            System.out.println("Elapsed time (seconds): " + (elapsedTime / 1000.0));
         } catch (Exception e) {
             e.printStackTrace();
         }
