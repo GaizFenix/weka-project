@@ -1,3 +1,5 @@
 Intel i5-8300H => Elapsed time (seconds): 177.55
 Intel i7-1165G7 => Elapsed time (seconds): 279.303
-Intel Celeron N4020 => Elapsed time: 1251.338s = 20.8556min
+Intel Celeron N3350 => Elapsed time: 1251.338s = 20.8556min
+AMD Epyc 7763 (4 cores used) => Elapsed time (seconds) = 268.359 
+AMD Epyc 7763 (2 cores used) => 
