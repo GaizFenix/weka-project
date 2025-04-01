@@ -186,9 +186,6 @@ public class Arff2BowForStats {
 
             // Process data lines
             while ((line = reader.readLine()) != null) {
-                System.out.println("DEBUG: Processing line: " + line);
-
-                // Split the line into columns, handling commas inside quotes
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 System.out.println("DEBUG: Number of columns: " + values.length);
 
