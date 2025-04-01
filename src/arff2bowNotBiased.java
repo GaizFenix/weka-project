@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import weka.attributeSelection.AttributeSelection;
-// import weka.attributeSelection.BestFirst;
-// import weka.attributeSelection.CfsSubsetEval;
+import weka.attributeSelection.BestFirst;
+import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.Ranker;
 import weka.core.Instances;
@@ -37,6 +37,7 @@ public class arff2bowNotBiased {
         String outDevArffPath = args[2];
         String tempDictionaryPath = "data/aux/dictionary_not_biased.txt";
         String finalDictionaryPath = "data/aux/dictionary_not_biased_final.txt";
+        // String attrIntArray = "data/aux/attr_int_array.txt";
 
         try {
             preprocessCSV(inCsvRawFilePath, outCsvTempPath);
@@ -112,6 +113,20 @@ public class arff2bowNotBiased {
             // File outputFile = new File("data/aux/attr_importance.txt");
             // BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 
+            /*
+            AttributeSelection attrSel = new AttributeSelection();
+            CfsSubsetEval evaluator = new CfsSubsetEval();
+            BestFirst ranker = new BestFirst();
+
+            attrSel.setEvaluator(evaluator);
+            attrSel.setSearch(ranker);
+            attrSel.SelectAttributes(newTrain);
+
+            int[] attrIndexes = attrSel.selectedAttributes();
+            System.out.println(attrSel.selectedAttributes().length + " attributes selected.");
+            */
+
+            // ATTRIBUTE SELECTION USING INFOGAIN
             AttributeSelection attrSel = new AttributeSelection();
             InfoGainAttributeEval evaluator = new InfoGainAttributeEval();
             Ranker ranker = new Ranker();
@@ -199,6 +214,23 @@ public class arff2bowNotBiased {
             } else {
                 System.out.println("No attributes with 0.0 importance were found to remove.");
             }
+
+            /* Create writer for the final dictionary
+            BufferedWriter dictWriter = new BufferedWriter(new FileWriter("data/aux/cfs_dictionary.txt"));
+
+            // The filtered Instances (after attribute selection)
+            newTrain = attrSel.reduceDimensionality(newTrain);
+
+            for (int i = 0; i < newTrain.numAttributes(); i++) {
+                if (i == newTrain.classIndex()) continue; // skip class attribute
+                String word = newTrain.attribute(i).name();
+                dictWriter.write(word + "," + i); // or use a running index if preferred
+                dictWriter.newLine();
+            }
+
+            dictWriter.close();
+            */
+
 
             // Save train BoW as ARFF
             ArffSaver as = new ArffSaver();
