@@ -50,12 +50,26 @@ public class arff2bowNotBiased {
             loader.setSource(new File(outCsvTempPath));
             loader.setFieldSeparator(",");
             loader.setNoHeaderRowPresent(false);
+            // loader.setNumericAttributes("1, 3");
+            // loader.setNominalAttributes("2, 4, 5, 7");
+            // loader.setStringAttributes("6");
+
+            // Code for when text and class are only attrs used
             loader.setStringAttributes("first");
             loader.setNominalAttributes("last");
 
             // Load into Instances object
             Instances data = loader.getDataSet();
             data.setClassIndex(data.numAttributes() - 1); // Class index is last
+
+            // Rename attributes
+            // data.renameAttribute(0, "attr_newid");
+            // data.renameAttribute(1, "attr_module");
+            // data.renameAttribute(2, "attr_age");
+            // data.renameAttribute(3, "attr_sex");
+            // data.renameAttribute(4, "attr_site");
+            // data.renameAttribute(5, "open_response");
+            // data.renameAttribute(6, "gs_text34");
 
             // Resample to create train and dev sets
             Resample r = new Resample();
@@ -214,7 +228,7 @@ public class arff2bowNotBiased {
     
             String line;
     
-            // Write header
+            // Write header - FOR USING ONLY TEXT AND CLASS
             if ((line = reader.readLine()) != null) {
                 String[] headers = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 if (headers.length >= 7) {
@@ -225,6 +239,13 @@ public class arff2bowNotBiased {
                     return;
                 }
             }
+
+            /* Write header - WHEN USING ALL ATTRIBUTES
+            if ((line = reader.readLine()) != null) {
+                writer.write(line.trim());
+                writer.newLine();
+            }
+            */
     
             // Process data lines
             while ((line = reader.readLine()) != null) {
@@ -233,6 +254,7 @@ public class arff2bowNotBiased {
                 if (values.length < 7) continue;
     
                 String feature = "\"" + values[5].trim().replace("\"", "\"\"") + "\"";
+                // values[5] = "\"" + values[5].trim().replace("\"", "\"\"") + "\"";
     
                 String rawClass = values[6].trim();
                 rawClass = rawClass.replaceAll("^['\"]|['\"]$", "").trim().toLowerCase();
@@ -242,8 +264,11 @@ public class arff2bowNotBiased {
                     System.err.println("WARNING: Unmapped class '" + rawClass + "' — skipping line.");
                     continue;
                 }
+
+                // values[6] = "\"" + mappedClass.replace("\"", "\"\"") + "\""; // quote and escape mapped class
     
                 writer.write(feature + "," + mappedClass);
+                // writer.write(String.join(",", values));
                 writer.newLine();
             }
         }
