@@ -186,10 +186,17 @@ public class Arff2BowForStats {
 
             // Process data lines
             while ((line = reader.readLine()) != null) {
-                line = line.replaceAll("^(.*?,.*?,.*?,.*?,.*?,)(.*?)(,.*)$", "$1\"$2\"$3");
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                System.out.println("DEBUG: Number of columns: " + values.length);
 
-                if (values.length < 7) continue;
+                // Validate the number of columns
+                if (values.length < 7) {
+                    System.err.println("WARNING: Line has fewer than 7 columns. Skipping: " + line);
+                    continue;
+                } else if (values.length > 7) {
+                    System.err.println("WARNING: Line has more than 7 columns. Attempting to fix: " + line);
+                    values = fixExtraColumns(values);
+                }
 
                 // Normalize class
                 String rawClass = values[6].trim().replaceAll("^['\"]|['\"]$", "").toLowerCase();
@@ -198,6 +205,7 @@ public class Arff2BowForStats {
                 // Replace only the class column with the mapped class
                 values[6] = mappedClass;
 
+                // Write the processed line to the output file
                 writer.write(String.join(",", values));
                 writer.newLine();
             }
@@ -271,5 +279,29 @@ public class Arff2BowForStats {
         map.put("other injuries", "External Causes of Morbidity and Mortality");
 
         return map;
+    }
+
+    private static String[] fixExtraColumns(String[] values) {
+        System.out.println("WARNING: Fixing extra columns in line: " + String.join(",", values));
+        // Si hay más de 7 columnas, combinamos las columnas adicionales en la penúltima columna
+        if (values.length > 7) {
+            String[] fixedValues = new String[7];
+            System.arraycopy(values, 0, fixedValues, 0, 5); // Copiar las primeras 5 columnas
+
+            // Combinar las columnas adicionales en la penúltima columna
+            StringBuilder combinedColumn = new StringBuilder(values[5]);
+            for (int i = 6; i < values.length - 1; i++) {
+                combinedColumn.append(",").append(values[i]);
+            }
+            fixedValues[5] = combinedColumn.toString();
+
+            // Mantener la última columna (clase) intacta
+            fixedValues[6] = values[values.length - 1];
+
+            return fixedValues;
+        }
+
+        // Si no hay más de 7 columnas, devolver los valores originales
+        return values;
     }
 }
