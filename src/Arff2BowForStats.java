@@ -186,6 +186,7 @@ public class Arff2BowForStats {
 
             // Process data lines
             while ((line = reader.readLine()) != null) {
+                line = line.replaceAll("^(.*?,.*?,.*?,.*?,.*?,)(.*?)(,.*)$", "$1\"$2\"$3");
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 if (values.length < 7) continue;
