@@ -34,6 +34,7 @@ public class treeAdaBoostGS {
             Instances train = dsTrain.getDataSet();
             train.setClassIndex(0);
             // train.setClassIndex(5); // Starting on 0, actually, it's the sixth attr
+            // train.setClassIndex(train.numAttributes() - 1);
 
             DataSource dsDev = new DataSource(inDevPath);
             Instances dev = dsDev.getDataSet();

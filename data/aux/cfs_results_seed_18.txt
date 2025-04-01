@@ -1,0 +1,53 @@
+cd /home/gaizka/Documents/GitHub/weka-project ; /usr/bin/env /usr/lib/jvm/java-17-openjdk-amd64/bin/java @/tmp/cp_diqf1iadokfhknqh6b29mmsvt.argfile treeAdaBoostGS data/arff/data_train_bow.arff data/arff/data_dev_raw.arff data/aux/cfs_dictionary.txt 
+Program started at: Tue Apr 01 18:10:30 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         212               16.2204 %
+Incorrectly Classified Instances      1095               83.7796 %
+Kappa statistic                          0.0617
+Mean absolute error                      0.1517
+Root mean squared error                  0.2751
+Relative absolute error                104.6746 %
+Root relative squared error            102.2178 %
+Total Number of Instances             1307     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.038    0.036    0.128      0.038    0.059      0.005    0.510     0.124     Diseases of Respiratory System
+                 0.363    0.120    0.425      0.363    0.392      0.259    0.686     0.315     Pregnancy or childbirth and the puerperium
+                 0.351    0.188    0.219      0.351    0.270      0.135    0.533     0.154     External Causes of Morbidity and Mortality
+                 0.000    0.013    0.000      0.000    0.000      -0.018   0.505     0.025     Injury or Poisoning and External Causes
+                 0.000    0.059    0.000      0.000    0.000      -0.055   0.512     0.048     Neoplasms
+                 0.128    0.157    0.115      0.128    0.121      -0.028   0.474     0.131     Diseases of the circulatory system
+                 0.019    0.053    0.031      0.019    0.023      -0.043   0.512     0.084     Endocrine or Nutritional and Metabolic Diseases
+                 0.062    0.030    0.304      0.062    0.103      0.066    0.519     0.188     Certain infectious and Parasitic Diseases
+                 0.000    0.006    0.000      0.000    0.000      -0.011   0.430     0.016     Congenital Malformations
+                 0.000    0.032    0.000      0.000    0.000      -0.032   0.480     0.031     Diseases of the Digestive System
+                 0.292    0.187    0.056      0.292    0.094      0.050    0.594     0.048     Diseases of the Genitourinary System
+                 0.000    0.051    0.000      0.000    0.000      -0.014   0.349     0.003     Diseases of the Nervous System
+Weighted Avg.    0.162    0.095    0.200      0.162    0.159      0.070    0.544     0.160     
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j  k  l   <-- classified as
+  6 32 21  0 11 28  8  2  3  4 29 12 |  a = Diseases of Respiratory System
+ 13 93 38  1 38 27 31  2  0  2  9  2 |  b = Pregnancy or childbirth and the puerperium
+  6  9 60 16  1 33  1  2  0  1 39  3 |  c = External Causes of Morbidity and Mortality
+  0  2 12  0  0  2  2  0  0  0 11  1 |  d = Injury or Poisoning and External Causes
+  1  2 15  0  0 19  2  1  0  2 17  4 |  e = Neoplasms
+  4 31 33  0  9 23  2  7  1  5 45 20 |  f = Diseases of the circulatory system
+  5  4 28  0  0 23  2  8  0  5 25  7 |  g = Endocrine or Nutritional and Metabolic Diseases
+ 11 34 46  0  9 28 14 14  4  6 46 15 |  h = Certain infectious and Parasitic Diseases
+  0 11  3  0  4  0  2  0  0  0  3  0 |  i = Congenital Malformations
+  0  0  9  0  1  8  1 10  0  0 11  1 |  j = Diseases of the Digestive System
+  1  1  8  0  0  7  0  0  0 15 14  2 |  k = Diseases of the Genitourinary System
+  0  0  1  0  1  2  0  0  0  0  1  0 |  l = Diseases of the Nervous System
+
+Program finished at: Tue Apr 01 18:10:36 CEST 2025
+Elapsed time (seconds): 5.721
