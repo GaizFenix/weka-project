@@ -1,260 +1,7 @@
-Processing with random seed: 2
-
-Train set size: 3901
-Dev set size: 1307
+Processing with random seed: 668
 
 Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
-Train (BoW) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_train_bow_seed2.arff
-Dev (raw) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_dev_raw_seed2.arff
-Program started at: Mon Mar 31 23:27:46 CEST 2025
-WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
-=== Best parameters found ===
-weightThreshold: 100
-numIterations: 15
-
-=== Dev set evaluation ===
-
-Correctly Classified Instances         985               75.3634 %
-Incorrectly Classified Instances       322               24.6366 %
-Kappa statistic                          0.7176
-Mean absolute error                      0.0461
-Root mean squared error                  0.1806
-Relative absolute error                 31.8331 %
-Root relative squared error             67.0971 %
-Total Number of Instances             1307     
-
-=== Detailed Accuracy By Class ===
-
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,596    0,040    0,669      0,596    0,631      0,585    0,882     0,638     Diseases of Respiratory System
-                 0,871    0,030    0,875      0,871    0,873      0,842    0,965     0,915     Pregnancy or childbirth and the puerperium
-                 0,825    0,027    0,820      0,825    0,822      0,795    0,965     0,892     External Causes of Morbidity and Mortality
-                 0,833    0,003    0,862      0,833    0,847      0,844    0,979     0,874     Injury or Poisoning and External Causes
-                 0,841    0,016    0,726      0,841    0,779      0,770    0,981     0,796     Neoplasms
-                 0,739    0,043    0,735      0,739    0,737      0,695    0,948     0,840     Diseases of the circulatory system
-                 0,664    0,032    0,651      0,664    0,657      0,627    0,892     0,667     Endocrine or Nutritional and Metabolic Diseases
-                 0,674    0,047    0,750      0,674    0,710      0,654    0,915     0,765     Certain infectious and Parasitic Diseases
-                 0,913    0,009    0,656      0,913    0,764      0,770    0,983     0,910     Congenital Malformations
-                 0,732    0,011    0,682      0,732    0,706      0,696    0,945     0,745     Diseases of the Digestive System
-                 0,771    0,017    0,627      0,771    0,692      0,682    0,955     0,691     Diseases of the Genitourinary System
-                 1,000    0,004    0,500      1,000    0,667      0,706    1,000     0,883     Diseases of the Nervous System
-Weighted Avg.    0,754    0,033    0,756      0,754    0,753      0,719    0,939     0,802     
-
-=== Confusion Matrix ===
-
-   a   b   c   d   e   f   g   h   i   j   k   l   <-- classified as
-  93  11   6   1   5  11   3  16   3   1   6   0 |   a = Diseases of Respiratory System
-   7 223   8   0   0   4   5   3   5   1   0   0 |   b = Pregnancy or childbirth and the puerperium
-   2   6 141   1   3   3   6   4   0   1   2   2 |   c = External Causes of Morbidity and Mortality
-   1   0   2  25   1   0   0   1   0   0   0   0 |   d = Injury or Poisoning and External Causes
-   1   1   2   0  53   0   1   3   0   1   1   0 |   e = Neoplasms
-   9   6   7   0   1 133   8  12   1   0   1   2 |   f = Diseases of the circulatory system
-   7   0   2   0   7   6  71   8   0   2   4   0 |   g = Endocrine or Nutritional and Metabolic Diseases
-  16   7   1   1   3  19  13 153   1   7   5   1 |   h = Certain infectious and Parasitic Diseases
-   1   0   0   0   0   1   0   0  21   0   0   0 |   i = Congenital Malformations
-   1   0   0   1   0   2   2   2   0  30   3   0 |   j = Diseases of the Digestive System
-   1   1   3   0   0   2   0   2   1   1  37   0 |   k = Diseases of the Genitourinary System
-   0   0   0   0   0   0   0   0   0   0   0   5 |   l = Diseases of the Nervous System
-
-Program finished at: Mon Mar 31 23:30:15 CEST 2025
-Elapsed time (seconds): 148.632
-Accuracy for seed 2: 75.36342769701606
-
-Processing with random seed: 6
-
-Train set size: 3901
-Dev set size: 1307
-
-Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
-Train (BoW) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_train_bow_seed6.arff
-Dev (raw) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_dev_raw_seed6.arff
-Program started at: Mon Mar 31 23:30:17 CEST 2025
-WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
-=== Best parameters found ===
-weightThreshold: 100
-numIterations: 15
-
-=== Dev set evaluation ===
-
-Correctly Classified Instances        1001               76.5876 %
-Incorrectly Classified Instances       306               23.4124 %
-Kappa statistic                          0.7315
-Mean absolute error                      0.0419
-Root mean squared error                  0.1769
-Relative absolute error                 28.8925 %
-Root relative squared error             65.7409 %
-Total Number of Instances             1307     
-
-=== Detailed Accuracy By Class ===
-
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,679    0,036    0,721      0,679    0,700      0,661    0,919     0,744     Diseases of Respiratory System
-                 0,875    0,026    0,892      0,875    0,884      0,856    0,972     0,940     Pregnancy or childbirth and the puerperium
-                 0,871    0,035    0,788      0,871    0,828      0,802    0,973     0,863     External Causes of Morbidity and Mortality
-                 0,800    0,004    0,828      0,800    0,814      0,809    0,949     0,840     Injury or Poisoning and External Causes
-                 0,810    0,015    0,729      0,810    0,767      0,756    0,977     0,745     Neoplasms
-                 0,711    0,045    0,715      0,711    0,713      0,667    0,923     0,755     Diseases of the circulatory system
-                 0,636    0,029    0,660      0,636    0,648      0,617    0,903     0,706     Endocrine or Nutritional and Metabolic Diseases
-                 0,683    0,043    0,771      0,683    0,724      0,672    0,914     0,785     Certain infectious and Parasitic Diseases
-                 0,870    0,011    0,588      0,870    0,702      0,709    0,991     0,836     Congenital Malformations
-                 0,732    0,009    0,732      0,732    0,732      0,723    0,953     0,680     Diseases of the Digestive System
-                 0,854    0,011    0,745      0,854    0,796      0,790    0,967     0,733     Diseases of the Genitourinary System
-                 1,000    0,002    0,625      1,000    0,769      0,790    1,000     0,877     Diseases of the Nervous System
-Weighted Avg.    0,766    0,032    0,768      0,766    0,765      0,733    0,943     0,805     
-
-=== Confusion Matrix ===
-
-   a   b   c   d   e   f   g   h   i   j   k   l   <-- classified as
- 106   2   6   1   2  18   6  13   1   1   0   0 |   a = Diseases of Respiratory System
-   6 224   7   0   2   1   3   2  10   0   1   0 |   b = Pregnancy or childbirth and the puerperium
-   2   3 149   1   0   3   3   8   0   1   1   0 |   c = External Causes of Morbidity and Mortality
-   0   0   5  24   0   0   0   1   0   0   0   0 |   d = Injury or Poisoning and External Causes
-   4   0   0   0  51   1   5   2   0   0   0   0 |   e = Neoplasms
-   7   7  12   1   5 128   5   9   1   1   2   2 |   f = Diseases of the circulatory system
-   2   1   4   0   7  10  68   8   0   1   6   0 |   g = Endocrine or Nutritional and Metabolic Diseases
-  17  12   4   2   1  17   8 155   2   5   3   1 |   h = Certain infectious and Parasitic Diseases
-   0   1   0   0   0   1   1   0  20   0   0   0 |   i = Congenital Malformations
-   3   1   1   0   2   0   1   2   0  30   1   0 |   j = Diseases of the Digestive System
-   0   0   1   0   0   0   3   1   0   2  41   0 |   k = Diseases of the Genitourinary System
-   0   0   0   0   0   0   0   0   0   0   0   5 |   l = Diseases of the Nervous System
-
-Program finished at: Mon Mar 31 23:33:13 CEST 2025
-Elapsed time (seconds): 176.543
-Accuracy for seed 6: 76.5876052027544
-
-Processing with random seed: 10
-
-Train set size: 3901
-Dev set size: 1307
-
-Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
-Train (BoW) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_train_bow_seed10.arff
-Dev (raw) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_dev_raw_seed10.arff
-Program started at: Mon Mar 31 23:33:15 CEST 2025
-WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
-=== Best parameters found ===
-weightThreshold: 100
-numIterations: 15
-
-=== Dev set evaluation ===
-
-Correctly Classified Instances        1011               77.3527 %
-Incorrectly Classified Instances       296               22.6473 %
-Kappa statistic                          0.7395
-Mean absolute error                      0.04  
-Root mean squared error                  0.1746
-Relative absolute error                 27.5998 %
-Root relative squared error             64.8834 %
-Total Number of Instances             1307     
-
-=== Detailed Accuracy By Class ===
-
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,667    0,046    0,662      0,667    0,665      0,619    0,928     0,780     Diseases of Respiratory System
-                 0,891    0,034    0,864      0,891    0,877      0,847    0,965     0,889     Pregnancy or childbirth and the puerperium
-                 0,842    0,026    0,828      0,842    0,835      0,810    0,971     0,919     External Causes of Morbidity and Mortality
-                 0,900    0,006    0,771      0,900    0,831      0,829    0,997     0,828     Injury or Poisoning and External Causes
-                 0,889    0,012    0,789      0,889    0,836      0,829    0,971     0,800     Neoplasms
-                 0,706    0,038    0,747      0,706    0,726      0,684    0,940     0,771     Diseases of the circulatory system
-                 0,636    0,015    0,791      0,636    0,705      0,686    0,924     0,724     Endocrine or Nutritional and Metabolic Diseases
-                 0,740    0,054    0,743      0,740    0,742      0,688    0,921     0,804     Certain infectious and Parasitic Diseases
-                 0,696    0,005    0,696      0,696    0,696      0,690    0,861     0,731     Congenital Malformations
-                 0,805    0,013    0,673      0,805    0,733      0,727    0,964     0,863     Diseases of the Digestive System
-                 0,729    0,008    0,778      0,729    0,753      0,744    0,957     0,704     Diseases of the Genitourinary System
-                 1,000    0,002    0,714      1,000    0,833      0,845    0,999     0,810     Diseases of the Nervous System
-Weighted Avg.    0,774    0,033    0,774      0,774    0,772      0,740    0,946     0,819     
-
-=== Confusion Matrix ===
-
-   a   b   c   d   e   f   g   h   i   j   k   l   <-- classified as
- 104   7   5   1   0  11   1  21   1   4   1   0 |   a = Diseases of Respiratory System
-   9 228   7   0   1   0   3   6   2   0   0   0 |   b = Pregnancy or childbirth and the puerperium
-   4   4 144   2   0   7   1   8   0   1   0   0 |   c = External Causes of Morbidity and Mortality
-   1   1   0  27   0   0   0   1   0   0   0   0 |   d = Injury or Poisoning and External Causes
-   0   0   0   0  56   0   2   3   1   0   1   0 |   e = Neoplasms
-  14   5   5   3   3 127   7  10   1   2   2   1 |   f = Diseases of the circulatory system
-   6   1   4   0   9   8  68   6   0   2   3   0 |   g = Endocrine or Nutritional and Metabolic Diseases
-  13  11   6   2   2  14   2 168   1   4   3   1 |   h = Certain infectious and Parasitic Diseases
-   1   6   0   0   0   0   0   0  16   0   0   0 |   i = Congenital Malformations
-   2   0   0   0   0   1   1   3   1  33   0   0 |   j = Diseases of the Digestive System
-   3   1   3   0   0   2   1   0   0   3  35   0 |   k = Diseases of the Genitourinary System
-   0   0   0   0   0   0   0   0   0   0   0   5 |   l = Diseases of the Nervous System
-
-Program finished at: Mon Mar 31 23:36:01 CEST 2025
-Elapsed time (seconds): 166.344
-Accuracy for seed 10: 77.35271614384085
-
-Processing with random seed: 14
-
-Train set size: 3901
-Dev set size: 1307
-
-Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
-Train (BoW) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_train_bow_seed14.arff
-Dev (raw) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_dev_raw_seed14.arff
-Program started at: Mon Mar 31 23:36:03 CEST 2025
-WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
-=== Best parameters found ===
-weightThreshold: 100
-numIterations: 10
-
-=== Dev set evaluation ===
-
-Correctly Classified Instances         992               75.899  %
-Incorrectly Classified Instances       315               24.101  %
-Kappa statistic                          0.7232
-Mean absolute error                      0.0439
-Root mean squared error                  0.1756
-Relative absolute error                 30.3062 %
-Root relative squared error             65.2613 %
-Total Number of Instances             1307     
-
-=== Detailed Accuracy By Class ===
-
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,577    0,039    0,667      0,577    0,619      0,573    0,894     0,704     Diseases of Respiratory System
-                 0,875    0,029    0,878      0,875    0,877      0,847    0,976     0,920     Pregnancy or childbirth and the puerperium
-                 0,842    0,027    0,823      0,842    0,832      0,807    0,959     0,893     External Causes of Morbidity and Mortality
-                 0,900    0,007    0,750      0,900    0,818      0,817    0,992     0,851     Injury or Poisoning and External Causes
-                 0,778    0,012    0,766      0,778    0,772      0,760    0,967     0,783     Neoplasms
-                 0,778    0,048    0,722      0,778    0,749      0,707    0,940     0,815     Diseases of the circulatory system
-                 0,654    0,023    0,714      0,654    0,683      0,657    0,935     0,770     Endocrine or Nutritional and Metabolic Diseases
-                 0,705    0,052    0,741      0,705    0,722      0,666    0,930     0,790     Certain infectious and Parasitic Diseases
-                 0,826    0,004    0,792      0,826    0,809      0,805    0,992     0,901     Congenital Malformations
-                 0,683    0,013    0,622      0,683    0,651      0,640    0,940     0,618     Diseases of the Digestive System
-                 0,750    0,014    0,679      0,750    0,713      0,702    0,920     0,799     Diseases of the Genitourinary System
-                 1,000    0,005    0,417      1,000    0,588      0,644    1,000     1,000     Diseases of the Nervous System
-Weighted Avg.    0,759    0,033    0,760      0,759    0,758      0,725    0,945     0,819     
-
-=== Confusion Matrix ===
-
-   a   b   c   d   e   f   g   h   i   j   k   l   <-- classified as
-  90   6   5   2   3  19   6  16   1   3   2   3 |   a = Diseases of Respiratory System
-   3 224   4   0   2   3   1   9   3   1   4   2 |   b = Pregnancy or childbirth and the puerperium
-   3   2 144   4   1   5   2   8   0   2   0   0 |   c = External Causes of Morbidity and Mortality
-   0   0   0  27   0   0   1   2   0   0   0   0 |   d = Injury or Poisoning and External Causes
-   5   0   3   0  49   2   2   1   1   0   0   0 |   e = Neoplasms
-   4   5   9   0   1 140   7   9   0   3   1   1 |   f = Diseases of the circulatory system
-   7   3   2   0   5   9  70   3   0   4   4   0 |   g = Endocrine or Nutritional and Metabolic Diseases
-  22   8   5   3   2  11   5 160   0   4   6   1 |   h = Certain infectious and Parasitic Diseases
-   0   3   1   0   0   0   0   0  19   0   0   0 |   i = Congenital Malformations
-   1   4   1   0   1   1   1   4   0  28   0   0 |   j = Diseases of the Digestive System
-   0   0   1   0   0   4   3   4   0   0  36   0 |   k = Diseases of the Genitourinary System
-   0   0   0   0   0   0   0   0   0   0   0   5 |   l = Diseases of the Nervous System
-
-Program finished at: Mon Mar 31 23:38:50 CEST 2025
-Elapsed time (seconds): 167.064
-Accuracy for seed 14: 75.8990053557766
-
-Processing with random seed: 18
-
-Train set size: 3901
-Dev set size: 1307
-
-Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
-Train (BoW) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_train_bow_seed18.arff
-Dev (raw) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_dev_raw_seed18.arff
-Program started at: Mon Mar 31 23:38:52 CEST 2025
+Program started at: Tue Apr 01 13:56:14 CEST 2025
 WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
 === Best parameters found ===
 weightThreshold: 80
@@ -262,61 +9,95 @@ numIterations: 15
 
 === Dev set evaluation ===
 
-Correctly Classified Instances        1010               77.2762 %
-Incorrectly Classified Instances       297               22.7238 %
-Kappa statistic                          0.7394
-Mean absolute error                      0.041 
-Root mean squared error                  0.1687
-Relative absolute error                 28.2954 %
-Root relative squared error             62.7038 %
+Correctly Classified Instances        1005               76.8936 %
+Incorrectly Classified Instances       302               23.1064 %
+Kappa statistic                          0.7348
+Mean absolute error                      0.0419
+Root mean squared error                  0.1725
+Relative absolute error                 28.9293 %
+Root relative squared error             64.1    %
 Total Number of Instances             1307     
 
-=== Detailed Accuracy By Class ===
+Program finished at: Tue Apr 01 13:58:45 CEST 2025
+Elapsed time (seconds): 151.16
+Accuracy for seed 668: 76.89364957918899
 
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,635    0,035    0,712      0,635    0,671      0,631    0,927     0,773     Diseases of Respiratory System
-                 0,867    0,025    0,895      0,867    0,881      0,853    0,971     0,931     Pregnancy or childbirth and the puerperium
-                 0,889    0,025    0,844      0,889    0,866      0,846    0,981     0,930     External Causes of Morbidity and Mortality
-                 0,733    0,002    0,880      0,733    0,800      0,799    0,907     0,788     Injury or Poisoning and External Causes
-                 0,810    0,013    0,761      0,810    0,785      0,774    0,978     0,824     Neoplasms
-                 0,772    0,043    0,743      0,772    0,757      0,718    0,950     0,797     Diseases of the circulatory system
-                 0,607    0,033    0,619      0,607    0,613      0,579    0,908     0,656     Endocrine or Nutritional and Metabolic Diseases
-                 0,727    0,039    0,797      0,727    0,760      0,714    0,941     0,832     Certain infectious and Parasitic Diseases
-                 0,870    0,009    0,645      0,870    0,741      0,744    0,973     0,849     Congenital Malformations
-                 0,707    0,017    0,580      0,707    0,637      0,628    0,960     0,799     Diseases of the Digestive System
-                 0,854    0,016    0,672      0,854    0,752      0,747    0,978     0,852     Diseases of the Genitourinary System
-                 1,000    0,002    0,714      1,000    0,833      0,845    1,000     1,000     Diseases of the Nervous System
-Weighted Avg.    0,773    0,030    0,776      0,773    0,773      0,742    0,953     0,837     
-
-=== Confusion Matrix ===
-
-   a   b   c   d   e   f   g   h   i   j   k   l   <-- classified as
-  99   6   6   1   5  16   7  11   1   3   1   0 |   a = Diseases of Respiratory System
-   8 222   3   0   1   3   5   7   6   1   0   0 |   b = Pregnancy or childbirth and the puerperium
-   2   3 152   1   0   4   4   3   0   1   1   0 |   c = External Causes of Morbidity and Mortality
-   1   1   3  22   0   1   0   2   0   0   0   0 |   d = Injury or Poisoning and External Causes
-   0   0   0   0  51   4   5   1   1   0   1   0 |   e = Neoplasms
-   8   3   4   0   3 139   7   8   0   3   3   2 |   f = Diseases of the circulatory system
-   4   3   4   1   5   6  65   8   0   4   7   0 |   g = Endocrine or Nutritional and Metabolic Diseases
-  13   6   8   0   1  10   7 165   3   8   6   0 |   h = Certain infectious and Parasitic Diseases
-   0   3   0   0   0   0   0   0  20   0   0   0 |   i = Congenital Malformations
-   2   1   0   0   1   3   2   2   0  29   1   0 |   j = Diseases of the Digestive System
-   2   0   0   0   0   1   3   0   0   1  41   0 |   k = Diseases of the Genitourinary System
-   0   0   0   0   0   0   0   0   0   0   0   5 |   l = Diseases of the Nervous System
-
-Program finished at: Mon Mar 31 23:41:12 CEST 2025
-Elapsed time (seconds): 139.905
-Accuracy for seed 18: 77.27620504973221
-
-Processing with random seed: 22
-
-Train set size: 3901
-Dev set size: 1307
+Processing with random seed: 162
 
 Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
-Train (BoW) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_train_bow_seed22.arff
-Dev (raw) ARFF saved to: /home/egoitz/Documentos/GitHub/weka-project/data/arff/data_dev_raw_seed22.arff
-Program started at: Mon Mar 31 23:41:13 CEST 2025
+Program started at: Tue Apr 01 13:58:47 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 70
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances        1013               77.5057 %
+Incorrectly Classified Instances       294               22.4943 %
+Kappa statistic                          0.7412
+Mean absolute error                      0.0418
+Root mean squared error                  0.1712
+Relative absolute error                 28.8325 %
+Root relative squared error             63.6074 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:01:05 CEST 2025
+Elapsed time (seconds): 138.409
+Accuracy for seed 162: 77.50573833205814
+
+Processing with random seed: 704
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:01:06 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 10
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         996               76.205  %
+Incorrectly Classified Instances       311               23.795  %
+Kappa statistic                          0.7264
+Mean absolute error                      0.0443
+Root mean squared error                  0.1733
+Relative absolute error                 30.5914 %
+Root relative squared error             64.4178 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:03:35 CEST 2025
+Elapsed time (seconds): 148.177
+Accuracy for seed 704: 76.20504973221117
+
+Processing with random seed: 638
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:03:36 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 90
+numIterations: 10
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances        1003               76.7406 %
+Incorrectly Classified Instances       304               23.2594 %
+Kappa statistic                          0.7331
+Mean absolute error                      0.0408
+Root mean squared error                  0.1713
+Relative absolute error                 28.1663 %
+Root relative squared error             63.6628 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:06:05 CEST 2025
+Elapsed time (seconds): 149.132
+Accuracy for seed 638: 76.7406273909717
+
+Processing with random seed: 267
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:06:06 CEST 2025
 WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
 === Best parameters found ===
 weightThreshold: 100
@@ -324,51 +105,380 @@ numIterations: 15
 
 === Dev set evaluation ===
 
-Correctly Classified Instances         988               75.593  %
-Incorrectly Classified Instances       319               24.407  %
-Kappa statistic                          0.72  
-Mean absolute error                      0.0461
-Root mean squared error                  0.1747
-Relative absolute error                 31.7843 %
-Root relative squared error             64.9193 %
+Correctly Classified Instances         997               76.2816 %
+Incorrectly Classified Instances       310               23.7184 %
+Kappa statistic                          0.7279
+Mean absolute error                      0.041 
+Root mean squared error                  0.1745
+Relative absolute error                 28.3209 %
+Root relative squared error             64.8614 %
 Total Number of Instances             1307     
 
-=== Detailed Accuracy By Class ===
+Program finished at: Tue Apr 01 14:08:42 CEST 2025
+Elapsed time (seconds): 155.374
+Accuracy for seed 267: 76.28156082631982
 
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,558    0,039    0,659      0,558    0,604      0,558    0,889     0,680     Diseases of Respiratory System
-                 0,832    0,029    0,873      0,832    0,852      0,817    0,960     0,897     Pregnancy or childbirth and the puerperium
-                 0,854    0,032    0,802      0,854    0,827      0,801    0,971     0,893     External Causes of Morbidity and Mortality
-                 0,733    0,007    0,710      0,733    0,721      0,715    0,947     0,787     Injury or Poisoning and External Causes
-                 0,810    0,013    0,761      0,810    0,785      0,774    0,963     0,851     Neoplasms
-                 0,778    0,050    0,714      0,778    0,745      0,703    0,950     0,814     Diseases of the circulatory system
-                 0,664    0,031    0,657      0,664    0,660      0,630    0,954     0,740     Endocrine or Nutritional and Metabolic Diseases
-                 0,722    0,043    0,781      0,722    0,751      0,701    0,924     0,819     Certain infectious and Parasitic Diseases
-                 0,826    0,008    0,655      0,826    0,731      0,730    0,961     0,849     Congenital Malformations
-                 0,854    0,010    0,729      0,854    0,787      0,782    0,977     0,873     Diseases of the Digestive System
-                 0,729    0,014    0,673      0,729    0,700      0,689    0,904     0,667     Diseases of the Genitourinary System
-                 1,000    0,002    0,625      1,000    0,769      0,790    1,000     1,000     Diseases of the Nervous System
-Weighted Avg.    0,756    0,033    0,757      0,756    0,755      0,721    0,943     0,819     
+Processing with random seed: 685
 
-=== Confusion Matrix ===
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:08:43 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 90
+numIterations: 15
 
-   a   b   c   d   e   f   g   h   i   j   k   l   <-- classified as
-  87  10   6   1   4  16   9  16   1   4   1   1 |   a = Diseases of Respiratory System
-  11 213   3   2   2   6   4   6   7   0   1   1 |   b = Pregnancy or childbirth and the puerperium
-   2   3 146   3   0   9   2   5   0   0   1   0 |   c = External Causes of Morbidity and Mortality
-   0   1   7  22   0   0   0   0   0   0   0   0 |   d = Injury or Poisoning and External Causes
-   0   1   1   0  51   2   6   2   0   0   0   0 |   e = Neoplasms
-   6   0  10   0   4 140   8   5   1   1   4   1 |   f = Diseases of the circulatory system
-   7   1   3   0   2   8  71   8   0   3   4   0 |   g = Endocrine or Nutritional and Metabolic Diseases
-  16  10   5   2   3  11   5 164   1   4   6   0 |   h = Certain infectious and Parasitic Diseases
-   0   4   0   0   0   0   0   0  19   0   0   0 |   i = Congenital Malformations
-   0   0   1   0   0   1   1   3   0  35   0   0 |   j = Diseases of the Digestive System
-   3   1   0   1   1   3   2   1   0   1  35   0 |   k = Diseases of the Genitourinary System
-   0   0   0   0   0   0   0   0   0   0   0   5 |   l = Diseases of the Nervous System
+=== Dev set evaluation ===
 
-Program finished at: Mon Mar 31 23:43:30 CEST 2025
-Elapsed time (seconds): 136.842
-Accuracy for seed 22: 75.59296097934201
+Correctly Classified Instances         995               76.1285 %
+Incorrectly Classified Instances       312               23.8715 %
+Kappa statistic                          0.7256
+Mean absolute error                      0.0436
+Root mean squared error                  0.1766
+Relative absolute error                 30.1196 %
+Root relative squared error             65.629  %
+Total Number of Instances             1307     
 
+Program finished at: Tue Apr 01 14:11:16 CEST 2025
+Elapsed time (seconds): 152.775
+Accuracy for seed 685: 76.12853863810253
 
-ACCURACY MEAN (6 iterations) = 76.3453 
+Processing with random seed: 345
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:11:17 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 90
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         990               75.746  %
+Incorrectly Classified Instances       317               24.254  %
+Kappa statistic                          0.7222
+Mean absolute error                      0.0438
+Root mean squared error                  0.1754
+Relative absolute error                 30.2214 %
+Root relative squared error             65.1825 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:13:31 CEST 2025
+Elapsed time (seconds): 133.893
+Accuracy for seed 345: 75.7459831675593
+
+Processing with random seed: 497
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:13:32 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 80
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances        1019               77.9648 %
+Incorrectly Classified Instances       288               22.0352 %
+Kappa statistic                          0.7476
+Mean absolute error                      0.0409
+Root mean squared error                  0.1645
+Relative absolute error                 28.1941 %
+Root relative squared error             61.1144 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:15:51 CEST 2025
+Elapsed time (seconds): 138.244
+Accuracy for seed 497: 77.96480489671002
+
+Processing with random seed: 812
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:15:52 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 90
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         966               73.9097 %
+Incorrectly Classified Instances       341               26.0903 %
+Kappa statistic                          0.7008
+Mean absolute error                      0.0469
+Root mean squared error                  0.1816
+Relative absolute error                 32.3444 %
+Root relative squared error             67.4741 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:18:14 CEST 2025
+Elapsed time (seconds): 142.491
+Accuracy for seed 812: 73.9097169089518
+
+Processing with random seed: 182
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:18:16 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 10
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances        1009               77.1997 %
+Incorrectly Classified Instances       298               22.8003 %
+Kappa statistic                          0.7381
+Mean absolute error                      0.0412
+Root mean squared error                  0.1727
+Relative absolute error                 28.444  %
+Root relative squared error             64.1821 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:20:38 CEST 2025
+Elapsed time (seconds): 142.864
+Accuracy for seed 182: 77.19969395562356
+
+Processing with random seed: 766
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:20:40 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 10
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances        1007               77.0467 %
+Incorrectly Classified Instances       300               22.9533 %
+Kappa statistic                          0.7368
+Mean absolute error                      0.0421
+Root mean squared error                  0.1703
+Relative absolute error                 29.0693 %
+Root relative squared error             63.305  %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:22:50 CEST 2025
+Elapsed time (seconds): 130.559
+Accuracy for seed 766: 77.04667176740628
+
+Processing with random seed: 756
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:22:52 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 90
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         999               76.4346 %
+Incorrectly Classified Instances       308               23.5654 %
+Kappa statistic                          0.7295
+Mean absolute error                      0.0435
+Root mean squared error                  0.1731
+Relative absolute error                 30.0486 %
+Root relative squared error             64.3217 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:25:13 CEST 2025
+Elapsed time (seconds): 141.738
+Accuracy for seed 756: 76.43458301453711
+
+Processing with random seed: 956
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:25:15 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 10
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         983               75.2104 %
+Incorrectly Classified Instances       324               24.7896 %
+Kappa statistic                          0.7155
+Mean absolute error                      0.0444
+Root mean squared error                  0.1782
+Relative absolute error                 30.6439 %
+Root relative squared error             66.2181 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:27:48 CEST 2025
+Elapsed time (seconds): 153.884
+Accuracy for seed 956: 75.21040550879877
+
+Processing with random seed: 937
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:27:50 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         972               74.3688 %
+Incorrectly Classified Instances       335               25.6312 %
+Kappa statistic                          0.7061
+Mean absolute error                      0.0453
+Root mean squared error                  0.1814
+Relative absolute error                 31.2851 %
+Root relative squared error             67.4237 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:30:30 CEST 2025
+Elapsed time (seconds): 160.648
+Accuracy for seed 937: 74.36878347360367
+
+Processing with random seed: 625
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:30:32 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         984               75.2869 %
+Incorrectly Classified Instances       323               24.7131 %
+Kappa statistic                          0.7163
+Mean absolute error                      0.0442
+Root mean squared error                  0.1816
+Relative absolute error                 30.5108 %
+Root relative squared error             67.4897 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:33:09 CEST 2025
+Elapsed time (seconds): 157.62
+Accuracy for seed 625: 75.28691660290743
+
+Processing with random seed: 5
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:33:11 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         990               75.746  %
+Incorrectly Classified Instances       317               24.254  %
+Kappa statistic                          0.7216
+Mean absolute error                      0.0425
+Root mean squared error                  0.1776
+Relative absolute error                 29.3539 %
+Root relative squared error             65.9835 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:35:43 CEST 2025
+Elapsed time (seconds): 152.682
+Accuracy for seed 5: 75.7459831675593
+
+Processing with random seed: 197
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:35:45 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         989               75.6695 %
+Incorrectly Classified Instances       318               24.3305 %
+Kappa statistic                          0.7207
+Mean absolute error                      0.0431
+Root mean squared error                  0.1799
+Relative absolute error                 29.7366 %
+Root relative squared error             66.8547 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:38:46 CEST 2025
+Elapsed time (seconds): 181.21
+Accuracy for seed 197: 75.66947207345065
+
+Processing with random seed: 388
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:38:47 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 90
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         983               75.2104 %
+Incorrectly Classified Instances       324               24.7896 %
+Kappa statistic                          0.7153
+Mean absolute error                      0.0429
+Root mean squared error                  0.1808
+Relative absolute error                 29.6153 %
+Root relative squared error             67.1995 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:41:24 CEST 2025
+Elapsed time (seconds): 157.282
+Accuracy for seed 388: 75.21040550879877
+
+Processing with random seed: 378
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:41:26 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 10
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances         999               76.4346 %
+Incorrectly Classified Instances       308               23.5654 %
+Kappa statistic                          0.7294
+Mean absolute error                      0.0421
+Root mean squared error                  0.1716
+Relative absolute error                 29.0776 %
+Root relative squared error             63.7795 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:43:56 CEST 2025
+Elapsed time (seconds): 149.93
+Accuracy for seed 378: 76.43458301453711
+
+Processing with random seed: 770
+
+Filtered dictionary saved to: /home/egoitz/Documentos/GitHub/weka-project/data/aux/dictionary_not_biased_final.txt
+Program started at: Tue Apr 01 14:43:57 CEST 2025
+WARNING: Classifier needs to handle numeric class for chosen type of evaluation!
+=== Best parameters found ===
+weightThreshold: 100
+numIterations: 15
+
+=== Dev set evaluation ===
+
+Correctly Classified Instances        1013               77.5057 %
+Incorrectly Classified Instances       294               22.4943 %
+Kappa statistic                          0.742 
+Mean absolute error                      0.0413
+Root mean squared error                  0.1696
+Relative absolute error                 28.5333 %
+Root relative squared error             63.0379 %
+Total Number of Instances             1307     
+
+Program finished at: Tue Apr 01 14:46:22 CEST 2025
+Elapsed time (seconds): 145.097
+Accuracy for seed 770: 77.50573833205814
+
+=== Average accuracy ===
+Average accuracy: 76.1744452945677
+Best accuracy: 77.96480489671002
+Best seed: 497

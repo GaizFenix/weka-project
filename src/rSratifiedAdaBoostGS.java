@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.InfoGainAttributeEval;
@@ -19,7 +20,7 @@ import weka.classifiers.meta.GridSearch;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.SelectedTag;
-import weka.core.converters.ArffSaver;
+//import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
 import weka.filters.Filter;
 import weka.filters.supervised.instance.Resample;
@@ -28,7 +29,7 @@ import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 
-public class stratifiedAdaBoostGS {
+public class rSratifiedAdaBoostGS {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 3) {
@@ -37,11 +38,13 @@ public class stratifiedAdaBoostGS {
         }
 
         int bestSeed = -1;
+        double everyAcc = 0.0;
         double bestAccuracy = 0.0;
         String outCsvTempPath = "data/aux/temp_not_biased.csv";
+        Integer itMax = 20;
         String inCsvRawFilePath = args[0];
-        String outTrainArffPath = args[1];
-        String outDevArffPath = args[2];
+        //String outTrainArffPath = args[1];
+        //String outDevArffPath = args[2];
         String tempDictionaryPath = "data/aux/dictionary_not_biased.txt";
         String finalDictionaryPath = "data/aux/dictionary_not_biased_final.txt";
 
@@ -65,7 +68,8 @@ public class stratifiedAdaBoostGS {
 
         // Load the file
         try {
-            for (int seed = 2; seed <= 22; seed += 4) {
+            for (int it = 1; it <= itMax; it ++) {
+                int seed = new Random().nextInt(999)+2;
                 System.out.println("\nProcessing with random seed: " + seed);
 
                 // Resample to create train and dev sets
@@ -87,8 +91,8 @@ public class stratifiedAdaBoostGS {
                 r.setInputFormat(data);
                 Instances dev = Filter.useFilter(data, r);
 
-                System.out.println("\nTrain set size: " + train.size());
-                System.out.println("Dev set size: " + dev.size());
+                //System.out.println("\nTrain set size: " + train.size());
+                //System.out.println("Dev set size: " + dev.size());
 
                 // Filter applying (StringToWordVector and SparseToNonSparse)
                 StringToWordVector filter = new StringToWordVector();
@@ -184,7 +188,7 @@ public class stratifiedAdaBoostGS {
                 }
 
                 // Save train BoW as ARFF
-                ArffSaver as = new ArffSaver();
+                /*ArffSaver as = new ArffSaver();
                 as.setFile(new File(outTrainArffPath.replace(".arff", "_seed" + seed + ".arff")));
                 as.setInstances(newTrain);
                 as.writeBatch();
@@ -192,11 +196,11 @@ public class stratifiedAdaBoostGS {
                 System.out.println("Train (BoW) ARFF saved to: " + outTrainArffPath.replace(".arff", "_seed" + seed + ".arff"));
 
                 // Save dev raw as ARFF
-                as.setFile(new File(outDevArffPath.replace(".arff", "_seed" + seed + ".arff")));
+                /*as.setFile(new File(outDevArffPath.replace(".arff", "_seed" + seed + ".arff")));
                 as.setInstances(dev);
                 as.writeBatch();
 
-                System.out.println("Dev (raw) ARFF saved to: " + outDevArffPath.replace(".arff", "_seed" + seed + ".arff"));
+                System.out.println("Dev (raw) ARFF saved to: " + outDevArffPath.replace(".arff", "_seed" + seed + ".arff"));*/
 
                 // Record start time
                 long startTime = System.currentTimeMillis();
@@ -280,8 +284,8 @@ public class stratifiedAdaBoostGS {
             
                 System.out.println("\n=== Dev set evaluation ===");
                 System.out.println(eval.toSummaryString());
-                System.out.println(eval.toClassDetailsString());
-                System.out.println(eval.toMatrixString());
+                //System.out.println(eval.toClassDetailsString());
+                //System.out.println(eval.toMatrixString());
 
                 // Record end time
                 long endTime = System.currentTimeMillis();
@@ -294,13 +298,21 @@ public class stratifiedAdaBoostGS {
                 System.out.println("Accuracy for seed " + seed + ": " + accuracy);
 
                 
-                // Track the best seed and accuracy
-                if (bestSeed == -1 || accuracy > bestAccuracy) {
-                    bestSeed = seed;
+                // Save acc for average
+                everyAcc = everyAcc + accuracy;
+
+                // Save best acc
+                if (accuracy > bestAccuracy) {
                     bestAccuracy = accuracy;
+                    bestSeed = seed;
                 }
 
             }
+
+            System.out.println("\n=== Average accuracy ===");
+            System.out.println("Average accuracy: " + (everyAcc / itMax));
+            System.out.println("Best accuracy: " + bestAccuracy);
+            System.out.println("Best seed: " + bestSeed);
         
         } catch (Exception e) {
             e.printStackTrace();
