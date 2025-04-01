@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.Ranker;
@@ -33,20 +31,27 @@ public class rSratifiedAdaBoostGS {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 3) {
-            System.err.println("ERROR! Correct usage: java stratifiedAdaBoostGS <input_raw.csv> <output_train.arff> <output_dev.arff>");
+            System.err.println("ERROR! Correct usage: java rStratifiedAdaBoostGS <input_raw.csv> <output_train.arff> <output_dev.arff>");
             System.exit(1);
         }
 
         int bestSeed = -1;
-        double everyAcc = 0.0;
         double bestAccuracy = 0.0;
         String outCsvTempPath = "data/aux/temp_not_biased.csv";
-        Integer itMax = 20;
+        int[] seeds = {5, 162, 182, 197, 267, 345, 378, 388, 497, 625, 638, 668, 685, 704, 756, 766, 770, 812, 937, 956};
+        double[] everyAcc = new double[seeds.length];
+        double[] everyPrecision = new double[seeds.length];
+        double[] everyRecall = new double[seeds.length];
+        double[] everyF1 = new double[seeds.length];
+        double[] everyROC = new double[seeds.length];
+        double[] everyPRC = new double[seeds.length];
+        Integer itMax = seeds.length;
         String inCsvRawFilePath = args[0];
         //String outTrainArffPath = args[1];
         //String outDevArffPath = args[2];
         String tempDictionaryPath = "data/aux/dictionary_not_biased.txt";
         String finalDictionaryPath = "data/aux/dictionary_not_biased_final.txt";
+        
 
         try {
             preprocessCSV(inCsvRawFilePath, outCsvTempPath);
@@ -69,7 +74,7 @@ public class rSratifiedAdaBoostGS {
         // Load the file
         try {
             for (int it = 1; it <= itMax; it ++) {
-                int seed = new Random().nextInt(999)+2;
+                int seed = seeds[it - 1];
                 System.out.println("\nProcessing with random seed: " + seed);
 
                 // Resample to create train and dev sets
@@ -284,6 +289,8 @@ public class rSratifiedAdaBoostGS {
             
                 System.out.println("\n=== Dev set evaluation ===");
                 System.out.println(eval.toSummaryString());
+                System.out.println(eval.toClassDetailsString());
+                System.out.println(eval.toMatrixString());
                 //System.out.println(eval.toClassDetailsString());
                 //System.out.println(eval.toMatrixString());
 
@@ -299,7 +306,12 @@ public class rSratifiedAdaBoostGS {
 
                 
                 // Save acc for average
-                everyAcc = everyAcc + accuracy;
+                everyAcc[it - 1] = accuracy;
+                everyPrecision[it - 1] = eval.weightedPrecision();
+                everyRecall[it - 1] = eval.weightedRecall();
+                everyF1[it - 1] = eval.weightedFMeasure();
+                everyROC[it - 1] = eval.weightedAreaUnderROC();
+                everyPRC[it - 1] = eval.weightedAreaUnderPRC();
 
                 // Save best acc
                 if (accuracy > bestAccuracy) {
@@ -309,8 +321,32 @@ public class rSratifiedAdaBoostGS {
 
             }
 
-            System.out.println("\n=== Average accuracy ===");
-            System.out.println("Average accuracy: " + (everyAcc / itMax));
+            // Calculate mean and standard deviation
+            double meanAcc = calculateMean(everyAcc);
+            // Calculate mean precision
+            double meanPrecision = calculateMean(everyPrecision);
+            // Calculate mean recall
+            double meanRecall = calculateMean(everyRecall);
+            // Calculate mean F1
+            double meanF1 = calculateMean(everyF1);
+            // Calculate mean ROC
+            double meanROC = calculateMean(everyROC);
+            // Calculate mean PRC
+            double meanPRC = calculateMean(everyPRC);
+            // Print results
+            System.out.println("\n=== General Metrics ===");
+            System.out.println("Mean accuracy: " + meanAcc);
+            System.out.println("Standard ACC deviation: " + calculateStdDev(everyAcc, meanAcc));
+            System.out.println("Mean precision: " + meanPrecision);
+            System.out.println("Standard precision deviation: " + calculateStdDev(everyPrecision, meanPrecision));
+            System.out.println("Mean recall: " + meanRecall);
+            System.out.println("Standard recall deviation: " + calculateStdDev(everyRecall, meanRecall));
+            System.out.println("Mean F1: " + meanF1);
+            System.out.println("Standard F1 deviation: " + calculateStdDev(everyF1, meanF1));
+            System.out.println("Mean ROC: " + meanROC);
+            System.out.println("Standard ROC deviation: " + calculateStdDev(everyROC, meanROC));
+            System.out.println("Mean PRC: " + meanPRC);
+            System.out.println("Standard PRC deviation: " + calculateStdDev(everyPRC, meanPRC));
             System.out.println("Best accuracy: " + bestAccuracy);
             System.out.println("Best seed: " + bestSeed);
         
@@ -362,7 +398,23 @@ public class rSratifiedAdaBoostGS {
         }
     }
     
-    
+    //Desviación estándar
+    private static double calculateStdDev(double[] values, double mean) {
+        double variance = 0;
+        for (double value : values) {
+            variance += Math.pow(value - mean, 2);
+        }
+        variance /= values.length;
+        return Math.sqrt(variance);
+    }
+
+    private static double calculateMean(double[] values) {
+        double sum = 0;
+        for (double value : values) {
+            sum += value;
+        }
+        return sum / values.length;
+    }
 
     private static Map<String, String> getDiseaseChapterMap() {
         Map<String, String> map = new HashMap<>();
