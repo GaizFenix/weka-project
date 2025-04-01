@@ -369,3 +369,6 @@ Weighted Avg.    0,756    0,033    0,757      0,756    0,755      0,721    0,943
 Program finished at: Mon Mar 31 23:43:30 CEST 2025
 Elapsed time (seconds): 136.842
 Accuracy for seed 22: 75.59296097934201
+
+
+ACCURACY MEAN (6 iterations) = 76.3453 
