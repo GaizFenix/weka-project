@@ -1,0 +1,13 @@
+=== Informe de Análisis del Dataset ===
+
+Atributos:
+Nominal Attributes: 4
+Numeric Attributes: 2
+String Attributes: 0
+Boolean Attributes: 0
+Attributes total: 6
+
+Instancias:
+Instancias total: 5209
+
+Top 10 palabras más frecuentes:
