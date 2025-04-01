@@ -31,8 +31,8 @@ public class Arff2BowForStats {
         String outCsvTempPath = "data/aux/temp_not_biased.csv";
         String inCsvRawFilePath = args[0];
         String outArffPath = args[1];
-        String tempDictionaryPath = "data/aux/dictionary_not_biased.txt";
-        String finalDictionaryPath = "data/aux/dictionary_not_biased_final.txt";
+        String tempDictionaryPath = "data/aux/dictionary_4_stats.txt";
+        String finalDictionaryPath = "data/aux/dictionary_4_stats_final.txt";
 
         try {
             preprocessCSV(inCsvRawFilePath, outCsvTempPath);
@@ -186,8 +186,8 @@ public class Arff2BowForStats {
 
             // Process data lines
             while ((line = reader.readLine()) != null) {
+                line = line.replaceAll("^(.*?,.*?,.*?,.*?,.*?,)(.*?)(,.*)$", "$1\"$2\"$3");
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                System.out.println("DEBUG: Number of columns: " + values.length);
 
                 // Validate the number of columns
                 if (values.length < 7) {
