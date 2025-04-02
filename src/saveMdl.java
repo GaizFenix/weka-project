@@ -82,6 +82,7 @@ public class saveMdl {
 
             // Save mdl
             SerializationHelper.write(outMdlPath, ada);
+            SerializationHelper.write("data/aux/final_filter", filter);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,13 +108,6 @@ public class saveMdl {
                     return;
                 }
             }
-
-            /* Write header - WHEN USING ALL ATTRIBUTES
-            if ((line = reader.readLine()) != null) {
-                writer.write(line.trim());
-                writer.newLine();
-            }
-            */
     
             // Process data lines
             while ((line = reader.readLine()) != null) {
@@ -122,8 +116,7 @@ public class saveMdl {
                 if (values.length < 7) continue;
     
                 String feature = "\"" + values[5].trim().replace("\"", "\"\"") + "\"";
-                // values[5] = "\"" + values[5].trim().replace("\"", "\"\"") + "\"";
-    
+
                 String rawClass = values[6].trim();
                 rawClass = rawClass.replaceAll("^['\"]|['\"]$", "").trim().toLowerCase();
     
@@ -132,11 +125,8 @@ public class saveMdl {
                     System.err.println("WARNING: Unmapped class '" + rawClass + "' — skipping line.");
                     continue;
                 }
-
-                // values[6] = "\"" + mappedClass.replace("\"", "\"\"") + "\""; // quote and escape mapped class
     
                 writer.write(feature + "," + mappedClass);
-                // writer.write(String.join(",", values));
                 writer.newLine();
             }
         }
