@@ -155,92 +155,10 @@ public class testInstancesData {
                 if (values.length < 7) continue;
     
                 String feature = "\"" + values[5].trim().replace("\"", "\"\"") + "\"";
-
-                /*
-                String rawClass = values[6].trim();
-                rawClass = rawClass.replaceAll("^['\"]|['\"]$", "").trim().toLowerCase();
-    
-                String mappedClass = diseaseMap.get(rawClass);
-                if (mappedClass == null) {
-                    System.err.println("WARNING: Unmapped class '" + rawClass + "' — skipping line.");
-                    continue;
-                }
-
-                System.out.println("Mapped class: " + mappedClass);
-                */
     
                 writer.write(feature + ",?");
                 writer.newLine();
             }
         }
-    }
-    
-    private static Map<String, String> getDiseaseChapterMap() {
-        Map<String, String> map = new HashMap<>();
-    
-        // Lowercase keys ONLY
-        map.put("diarrhea/dysentery", "Certain infectious and Parasitic Diseases");
-        map.put("other infectious diseases", "Certain infectious and Parasitic Diseases");
-        map.put("aids", "Certain infectious and Parasitic Diseases");
-        map.put("sepsis", "Certain infectious and Parasitic Diseases");
-        map.put("meningitis", "Certain infectious and Parasitic Diseases");
-        map.put("meningitis/sepsis", "Certain infectious and Parasitic Diseases");
-        map.put("malaria", "Certain infectious and Parasitic Diseases");
-        map.put("encephalitis", "Certain infectious and Parasitic Diseases");
-        map.put("measles", "Certain infectious and Parasitic Diseases");
-        map.put("hemorrhagic fever", "Certain infectious and Parasitic Diseases");
-        map.put("tb", "Certain infectious and Parasitic Diseases");
-        map.put("other infectious diseases", "Certain infectious and Parasitic Diseases");
-    
-        map.put("leukemia/lymphomas", "Neoplasms");
-        map.put("colorectal cancer", "Neoplasms");
-        map.put("lung cancer", "Neoplasms");
-        map.put("cervical cancer", "Neoplasms");
-        map.put("breast cancer", "Neoplasms");
-        map.put("stomach cancer", "Neoplasms");
-        map.put("prostate cancer", "Neoplasms");
-        map.put("esophageal cancer", "Neoplasms");
-        map.put("other cancers", "Neoplasms");
-    
-        map.put("diabetes", "Endocrine or Nutritional and Metabolic Diseases");
-        map.put("other non-communicable diseases", "Endocrine or Nutritional and Metabolic Diseases");
-    
-        map.put("epilepsy", "Diseases of the Nervous System");
-    
-        map.put("stroke", "Diseases of the circulatory system");
-        map.put("acute myocardial infarction", "Diseases of the circulatory system");
-        map.put("other cardiovascular diseases", "Diseases of the circulatory system");
-    
-        map.put("pneumonia", "Diseases of Respiratory System");
-        map.put("asthma", "Diseases of Respiratory System");
-        map.put("copd", "Diseases of Respiratory System");
-    
-        map.put("cirrhosis", "Diseases of the Digestive System");
-        map.put("other digestive diseases", "Diseases of the Digestive System");
-    
-        map.put("renal failure", "Diseases of the Genitourinary System");
-    
-        map.put("preterm delivery", "Pregnancy or childbirth and the puerperium");
-        map.put("stillbirth", "Pregnancy or childbirth and the puerperium");
-        map.put("maternal", "Pregnancy or childbirth and the puerperium");
-        map.put("birth asphyxia", "Pregnancy or childbirth and the puerperium");
-        map.put("other defined causes of child deaths", "Pregnancy or childbirth and the puerperium");
-    
-        map.put("congenital malformations", "Congenital Malformations");
-        map.put("congenital malformation", "Congenital Malformations");
-    
-        map.put("bite of venomous animal", "Injury or Poisoning and External Causes");
-        map.put("poisonings", "Injury or Poisoning and External Causes");
-    
-        map.put("road traffic", "External Causes of Morbidity and Mortality");
-        map.put("falls", "External Causes of Morbidity and Mortality");
-        map.put("homicide", "External Causes of Morbidity and Mortality");
-        map.put("fires", "External Causes of Morbidity and Mortality");
-        map.put("drowning", "External Causes of Morbidity and Mortality");
-        map.put("suicide", "External Causes of Morbidity and Mortality");
-        map.put("violent death", "External Causes of Morbidity and Mortality");
-        map.put("other injuries", "External Causes of Morbidity and Mortality");
-    
-        return map;
     }
 }
