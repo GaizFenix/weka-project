@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import weka.attributeSelection.AttributeSelection;
-import weka.attributeSelection.BestFirst;
-import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.Ranker;
 import weka.core.Instances;
@@ -108,6 +106,8 @@ public class arff2bowNotBiased {
             filter2.setInputFormat(newTrain);
 
             newTrain = Filter.useFilter(newTrain, filter2);
+
+            System.out.println("Attributes of new set: " + newTrain.numAttributes());
 
             // Attribute importance
             // File outputFile = new File("data/aux/attr_importance.txt");
@@ -208,6 +208,8 @@ public class arff2bowNotBiased {
                 removeFilter.setAttributeIndices(removeIndices.toString());
                 removeFilter.setInputFormat(newTrain);
                 Instances filteredTrain = Filter.useFilter(newTrain, removeFilter);
+
+                System.out.println("Attributes of new set: " + filteredTrain.numAttributes());
                 
                 // Overwrite newTrain with the filtered version
                 newTrain = filteredTrain;
