@@ -29,8 +29,7 @@ public class testInstancesData {
         String outCsvTempPath = "data/aux/temp_for_test.csv";
         String inCsvRawFilePath = args[0];
         String inMdlPath = args[1];
-        // String finalDictionaryPath = "data/aux/dictionary_not_biased_final.txt";
-        String finalFilterPath = "data/aux/final_filter";
+        String finalDictionaryPath = "data/aux/dictionary_not_biased_final.txt";
 
         try {
             preprocessCSV(inCsvRawFilePath, outCsvTempPath);
@@ -85,7 +84,11 @@ public class testInstancesData {
             }
 
             // Filter applying (StringToWordVector and SparseToNonSparse)
-            FixedDictionaryStringToWordVector filter = (FixedDictionaryStringToWordVector) SerializationHelper.read(finalFilterPath);
+            FixedDictionaryStringToWordVector filter = new FixedDictionaryStringToWordVector();
+            filter.setDictionaryFile(new File(finalDictionaryPath));
+            filter.setAttributeIndices("first");
+            filter.setLowerCaseTokens(true);
+            filter.setOutputWordCounts(true);
             filter.setInputFormat(test);
 
             Instances newTest = Filter.useFilter(test, filter);

@@ -82,7 +82,6 @@ public class saveMdl {
 
             // Save mdl
             SerializationHelper.write(outMdlPath, ada);
-            SerializationHelper.write("data/aux/final_filter", filter);
 
         } catch (Exception e) {
             e.printStackTrace();
