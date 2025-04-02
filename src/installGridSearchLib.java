@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.List;
 import weka.core.packageManagement.Package;
 
-public class aux {
+public class installGridSearchLib {
     public static void main(String[] args) {
         try {
             // List installed packages
