@@ -46,16 +46,28 @@ public class Arff2BowForStats {
             loader.setSource(new File(outCsvTempPath));
             loader.setFieldSeparator(",");
             loader.setNoHeaderRowPresent(false);
-            loader.setStringAttributes("first");
-            loader.setNominalAttributes("last");
+            loader.setNumericAttributes("1, 3");
+            loader.setNominalAttributes("2, 4, 5, 7");
+            loader.setStringAttributes("6");
+
+
 
             // Load into Instances object
             Instances data = loader.getDataSet();
             data.setClassIndex(data.numAttributes() - 1); // Class index is last
 
+            // Rename attributes
+            data.renameAttribute(0, "attr_newid");
+            data.renameAttribute(1, "attr_module");
+            data.renameAttribute(2, "attr_age");
+            data.renameAttribute(3, "attr_sex");
+            data.renameAttribute(4, "attr_site");
+            data.renameAttribute(5, "open_response");
+            data.renameAttribute(6, "gs_text34");
+
             // Filter applying (StringToWordVector and SparseToNonSparse)
             StringToWordVector filter = new StringToWordVector();
-            filter.setAttributeIndices("first");
+            filter.setAttributeIndices("6");
             filter.setDictionaryFileToSaveTo(new File(tempDictionaryPath));
             filter.setLowerCaseTokens(true);
             filter.setOutputWordCounts(true);
@@ -117,7 +129,7 @@ public class Arff2BowForStats {
             // Filter the dataset again using the new dictionary
             int classIndex = newData.classIndex();
             ArrayList<Integer> removeIndicesList = new ArrayList<>();
-
+            /*
             // Iterate over the importance map and collect indices of attributes with 0.0 importance.
             // (Skip the class attribute.)
             for (Map.Entry<String, Double> entry : importanceMap.entrySet()) {
@@ -156,7 +168,7 @@ public class Arff2BowForStats {
             } else {
                 System.out.println("No attributes with 0.0 importance were found to remove.");
             }
-
+            */
             // Save the processed data as ARFF
             ArffSaver as = new ArffSaver();
             as.setFile(new File(outArffPath));

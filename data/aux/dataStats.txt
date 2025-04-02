@@ -1,13 +1,148 @@
-=== Informe de Análisis del Dataset ===
+Number of instances: 5209
+Number of attributes: 3406
+Number of nominal attributes: 4
+Number of numeric attributes: 3402
+Top 25 words:
+adult: 3389
+and: 3155
+of: 2394
+the: 2116
+or: 1568
+up: 1413
+bohol: 1190
+ap: 1142
+childbirth: 1024
+child: 945
+infectious: 906
+parasitic: 906
+neonate: 875
+circulatory: 717
+causes: 681
+morbidity: 681
+respiratory: 621
+mexico: 536
+pemba: 483
+dar: 445
+metabolic: 427
+nutritional: 427
+neoplasms: 249
+genitourinary: 191
+digestive: 164
 
-Atributos:
-Nominal Attributes: 4
-Numeric Attributes: 2
-String Attributes: 0
-Boolean Attributes: 0
-Attributes total: 6
+Counts for attr_sex:
+1: 2962
+2: 2247
 
-Instancias:
-Instancias total: 5209
+Counts for attr_site:
+Pemba: 483
+Dar: 445
+Mexico: 536
+UP: 1413
+Bohol: 1190
+AP: 1142
 
-Top 10 palabras más frecuentes:
+Counts for attr_age (Table):
+Age        | Count     
+----------------------------
+0          | 1220      
+1          | 112       
+2          | 68        
+3          | 65        
+4          | 55        
+5          | 46        
+6          | 47        
+7          | 32        
+8          | 46        
+9          | 33        
+10         | 55        
+11         | 39        
+12         | 26        
+13         | 28        
+14         | 24        
+15         | 27        
+16         | 22        
+17         | 35        
+18         | 58        
+19         | 28        
+20         | 64        
+21         | 40        
+22         | 53        
+23         | 35        
+24         | 59        
+25         | 87        
+26         | 60        
+27         | 38        
+28         | 59        
+29         | 23        
+30         | 93        
+31         | 48        
+32         | 35        
+33         | 25        
+34         | 33        
+35         | 112       
+36         | 47        
+37         | 29        
+38         | 57        
+39         | 30        
+40         | 94        
+41         | 30        
+42         | 55        
+43         | 34        
+44         | 28        
+45         | 99        
+46         | 37        
+47         | 43        
+48         | 60        
+49         | 33        
+50         | 88        
+51         | 28        
+52         | 49        
+53         | 35        
+54         | 44        
+55         | 107       
+56         | 47        
+57         | 32        
+58         | 48        
+59         | 33        
+60         | 108       
+61         | 28        
+62         | 47        
+63         | 39        
+64         | 45        
+65         | 108       
+66         | 32        
+67         | 28        
+68         | 43        
+69         | 22        
+70         | 100       
+71         | 26        
+72         | 36        
+73         | 31        
+74         | 28        
+75         | 53        
+76         | 28        
+77         | 21        
+78         | 31        
+79         | 26        
+80         | 45        
+81         | 17        
+82         | 25        
+83         | 13        
+84         | 14        
+85         | 21        
+86         | 15        
+87         | 12        
+88         | 11        
+89         | 5         
+90         | 8         
+91         | 5         
+92         | 5         
+93         | 1         
+94         | 2         
+95         | 2         
+96         | 2         
+97         | 2         
+98         | 2         
+99         | 5         
+
+Total count for #: 9914
