@@ -19,13 +19,12 @@ public class baseline {
             String inputArff = args[0]; 
             String outputFile = args[1]; 
 
-            int numSeeds = 25;
+            int numSeeds = 20;
+            int[] seeds = {5, 162, 182, 197, 267, 345, 378, 388, 497, 625, 638, 668, 685, 704, 756, 766, 770, 812, 937, 956};
     
             DataSource source = new DataSource(inputArff);
             Instances data = source.getDataSet();
-            if (data.classIndex() == -1) {
-                data.setClassIndex(data.numAttributes() - 1);
-            }
+            data.setClassIndex(0);
     
             double[] accuracies = new double[numSeeds];
             double[] precisions = new double[numSeeds];
@@ -42,13 +41,22 @@ public class baseline {
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
 
-                for (int seed = 1; seed <= numSeeds; seed++) {
+                for (int it = 1; it <= numSeeds; it++) {
+
+                    long startTime = System.currentTimeMillis();
+                    // Imprimir el tiempo de inicio
+                    System.out.println("Start time: " + startTime);
+
+                    // Imprimir la semilla actual
+                    System.out.println("Seed " + it + ": " + seeds[it - 1]);
+                    System.out.println("Iteration " + it + " of " + numSeeds);
+
                     // Configurar el filtro Resample para el stratified
                     Resample resample = new Resample();
-                    resample.setRandomSeed(seed);
+                    resample.setRandomSeed(seeds[it - 1]); // Semilla para la aleatoriedad
                     resample.setSampleSizePercent(70); // 70% para entrenamiento
-                    resample.setNoReplacement(true); // Sin reemplazo
-                    resample.setBiasToUniformClass(1.0); // Mantener la distribucion de las clases
+                    resample.setNoReplacement(false); // Sin reemplazo
+                    resample.setBiasToUniformClass(0.3); // Mantener la distribucion de las clases
                     resample.setInvertSelection(false); // Seleccionar el conjunto de entrenamiento
                     resample.setInputFormat(data);
 
@@ -67,21 +75,28 @@ public class baseline {
                     Evaluation eval = new Evaluation(test);
                     eval.evaluateModel(classifier, test);
 
-                    accuracies[seed - 1] = eval.pctCorrect();
-                    precisions[seed - 1] = eval.weightedPrecision();
-                    recalls[seed - 1] = eval.weightedRecall();
-                    f1Scores[seed - 1] = eval.weightedFMeasure();
-                    rocs[seed - 1] = eval.weightedAreaUnderROC();
-                    prcs[seed - 1] = eval.weightedAreaUnderPRC();
-                    kappas[seed - 1] = eval.kappa();
+                    accuracies[it-1] = eval.pctCorrect();
+                    precisions[it - 1] = eval.weightedPrecision();
+                    recalls[it - 1] = eval.weightedRecall();
+                    f1Scores[it - 1] = eval.weightedFMeasure();
+                    rocs[it - 1] = eval.weightedAreaUnderROC();
+                    prcs[it - 1] = eval.weightedAreaUnderPRC();
+                    kappas[it - 1] = eval.kappa();
 
                     // Métricas adicionales por semilla
-                    tprs[seed - 1] = eval.truePositiveRate(0); // TPR para la clase 0
-                    fprs[seed - 1] = eval.falsePositiveRate(0); // FPR para la clase 0
-                    tnrs[seed - 1] = 1 - eval.falsePositiveRate(0); // TNR = 1 - FPR
-                    fnrs[seed - 1] = 1 - eval.truePositiveRate(0); // FNR = 1 - TPR
+                    tprs[it - 1] = eval.truePositiveRate(0); // TPR para la clase 0
+                    fprs[it - 1] = eval.falsePositiveRate(0); // FPR para la clase 0
+                    tnrs[it - 1] = 1 - eval.falsePositiveRate(0); // TNR = 1 - FPR
+                    fnrs[it - 1] = 1 - eval.truePositiveRate(0); // FNR = 1 - TPR
 
-                    if (seed == numSeeds) {
+                    // Imprimir el tiempo de finalización
+                    long endTime = System.currentTimeMillis();
+                    System.out.println("End time: " + endTime);
+                    // Calcular el tiempo total de ejecución
+                    long totalTime = endTime - startTime;
+                    System.out.println("Total time: " + totalTime/1000 + " seconds");
+
+                    if (it == numSeeds) {
                         confusionMatrix = eval.confusionMatrix();
                     }
                 }
@@ -105,8 +120,11 @@ public class baseline {
                 writer.println("Mean Accuracy: " + meanAccuracy);
                 writer.println("Standard Deviation (Accuracy): " + stdDevAccuracy);
                 writer.println("Mean Precision: " + meanPrecision);
+                writer.println("Standard Deviation (Precision): " + calculateStdDev(precisions, meanPrecision));
                 writer.println("Mean Recall: " + meanRecall);
+                writer.println("Standard Deviation (Recall): " + calculateStdDev(recalls, meanRecall));
                 writer.println("Mean F1-Score: " + meanF1Score);
+                writer.println("Standard Deviation (F1-Score): " + calculateStdDev(f1Scores, meanF1Score));
                 writer.println("Mean ROC Area: " + meanROC);
                 writer.println("Mean PRC Area: " + meanPRC);
                 writer.println("Mean Kappa Statistic: " + meanKappa);
