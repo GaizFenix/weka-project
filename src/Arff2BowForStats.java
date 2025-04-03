@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +14,6 @@ import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
 import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 
@@ -127,8 +124,8 @@ public class Arff2BowForStats {
             System.out.println("\nFiltered dictionary saved to: " + newDictFile.getAbsolutePath());
 
             // Filter the dataset again using the new dictionary
-            int classIndex = newData.classIndex();
-            ArrayList<Integer> removeIndicesList = new ArrayList<>();
+            //int classIndex = newData.classIndex();
+            //ArrayList<Integer> removeIndicesList = new ArrayList<>();
             /*
             // Iterate over the importance map and collect indices of attributes with 0.0 importance.
             // (Skip the class attribute.)
