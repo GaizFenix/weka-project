@@ -1,14 +1,31 @@
 # Weka Project
 
 ## Overview
-This project implements various machine learning algorithms using the Weka framework. It focuses on processing data for verbal autopsy analysis, utilizing techniques such as AdaBoost and Grid Search for model optimization.
+This repository contains a project that demonstrates the execution of various machine learning tasks using Weka. Below, you will find detailed instructions for preprocessing, inference, and classification.
+
+---
+
+## Table of Content
+
+1. [Key Components](#key-components)
+2. [Project structrure](#project-structure)
+3. [Execution Example](#execution-examples)
+   - [Preprocessing](#preprocessing)
+   - [Inference](#inference)
+   - [Classification](#classification)
+3. [Requirements](#requirements)
+4. [Refereneces](#references)
+5. [License](#license)
+
+---
 
 ## Key Components
 - **Data Processing**: The project includes scripts for converting CSV data to ARFF format and applying filters to prepare the data for analysis.
 - **Machine Learning Models**: Implements AdaBoost with J48 as the base classifier, along with Grid Search for hyperparameter tuning.
 - **Evaluation**: The models are evaluated using various metrics, and results are printed to the console.
 
-## File Structure
+
+## Project Structure
 ```
 .
 ├── .gitignore
@@ -27,16 +44,47 @@ This project implements various machine learning algorithms using the Weka frame
     └── ...
 ```
 
-## Usage
-To run the AdaBoost model, use the following command:
-```
-java treeAdaBoostGS <input_train.arff> <input_dev.arff> <input_dictionary.txt>
+## Execution Example
+
+### Preprocessing
+
+- **Input**: `<raw.train.csv>`
+- **Output**: `<train.arff>` and `<dev.arff>`
+
+Command with example parameters (change depending what you use):
+
+```bash
+java -jar preprocess.jar data/raw/cleaned_PHMRC_VAI_redacted_free_text.train.csv data/arff/data_train_bow.arff data/arff/data_dev_raw.arff
 ```
 
-### Example
+### Inference
+
+- **Input**: `<train.arff>` and `<dev.arff>`
+- **Output**: `<kalitatearen estimazioa.txt>` eta `<model>`
+
+Command with example parameters (change depending what you use):
+
 ```bash
-java treeAdaBoostGS data/arff/data_train.arff data/arff/data_dev_raw.arff data/aux/dictionary_4_stats_final.txt
+java -jar getModel.jar data/arff/data_train_bow.arff data/arff/data_dev_raw.arff data/AdaModel.mdl
 ```
+
+### Classification
+
+- **Input**: `<model>` and `<raw_test_blind.csv>`
+- **Output**: `<sailkapena.txt>`
+
+Command with example parameters (change depending what you use):
+
+```bash
+java -jar classify.jar data/AdaModel.mdl data/raw/cleaned_PHMRC_VAI_redacted_free_text.train.csv data/iragarpenEmaitzak.txt
+```
+
+## Requirements
+
+- Java Runtime Environment (JRE)
+- Weka libraries
+- Input files in .csv or .arff format
+
 
 ## References
 - [Verbal Autopsy](https://www.healthdata.org/verbal-autopsy)
