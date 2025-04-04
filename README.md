@@ -28,19 +28,17 @@ This repository contains a project that demonstrates the execution of various ma
 ## Project Structure
 ```
 .
-├── .gitignore
 ├── design.pdf
 ├── LICENSE
 ├── README.md
-├── TODO.txt
 ├── data
 │   ├── arff
 │   ├── aux
 │   └── raw
 └── src
-    ├── Arff2BowForStats.java
-    ├── installGridSearchLib.java
-    ├── treeAdaBoostGS.java
+    ├── preprocess.java
+    ├── getModel.java
+    ├── classify.java
     └── ...
 ```
 
