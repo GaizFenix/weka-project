@@ -22,7 +22,7 @@ public class classify {
     public static void main(String[] args) {
         
         if (args.length != 3) {
-            System.err.println("ERROR! Correct usage: java testInstancesData <raw_test.csv> <input_mdl> <output_results.txt");
+            System.err.println("ERROR! Correct usage: java classify <raw_test.csv> <input_mdl> <output_results.txt");
             System.exit(1);
         }
 

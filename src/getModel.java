@@ -20,7 +20,7 @@ public class getModel {
     public static void main(String[] args) {
 
         if (args.length != 4) {
-            System.err.println("ERROR! Correct usage: java treeAdaBoost <input_train.arff> <input_dev.arff> <output_quality_stats.txt> <output_mdl>");
+            System.err.println("ERROR! Correct usage: java getModel <input_train.arff> <input_dev.arff> <output_quality_stats.txt> <output_mdl>");
             System.exit(1);
         }
 

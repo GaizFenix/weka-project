@@ -25,7 +25,7 @@ public class preprocess {
     public static void main(String[] args) {
 
         if (args.length != 3) {
-            System.err.println("ERROR! Correct usage: java arff2bowSimple <input_raw.csv> <output_train.arff> <output_dev.arff>");
+            System.err.println("ERROR! Correct usage: java preprocess <input_raw.csv> <output_train.arff> <output_dev.arff>");
             System.exit(1);
         }
         
