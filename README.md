@@ -63,18 +63,18 @@ java -jar preprocess.jar data/raw/cleaned_PHMRC_VAI_redacted_free_text.train.csv
 Command with example parameters (change depending what you use):
 
 ```bash
-java -jar getModel.jar data/arff/data_train_bow.arff data/arff/data_dev_raw.arff data/AdaModel.mdl
+java -jar getModel.jar data/arff/data_train_bow.arff data/arff/data_dev_raw.arff data/emaitzak.txt data/AdaModel.mdl
 ```
 
 ### Classification
 
-- **Input**: `<model>` and `<raw_test_blind.csv>`
+- **Input**: `<raw_test_blind.csv>` and `<model.mdl`
 - **Output**: `<sailkapena.txt>`
 
 Command with example parameters (change depending what you use):
 
 ```bash
-java -jar classify.jar data/AdaModel.mdl data/raw/cleaned_PHMRC_VAI_redacted_free_text.train.csv data/iragarpenEmaitzak.txt
+java -jar classify.jar data/raw/cleaned_PHMRC_VAI_redacted_free_text.train.csv data/AdaModel.mdl data/iragarpenEmaitzak.txt
 ```
 
 ## Requirements
